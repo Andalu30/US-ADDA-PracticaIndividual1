@@ -1,0 +1,115 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath} %Usado para omitir el numero en las ecuaciones
+%opening
+\title{ADDA - Practica Individual 1}
+\author{Juan Arteaga Carmona}
+\date{Jueves 19 de Abril de 2018}
+
+\begin{document}
+\maketitle
+
+\section{Complete la ficha de descripcion del problema}
+
+
+\begin{enumerate}
+ \item Tipos:\\
+ S - SolucionProblemaMochila\\
+ A - List\textless Jugador\textgreater
+
+ \item Propiedades compartidas:\\
+ N - Integer - Numero total de jugadores\\
+ M - Integer - Presupuesto\\
+ S - Integer - Numero de jugadores que hay que seleccionar\\
+ LJ - List\textless Jugador\textgreater - Lista de jugadores disponibles\\
+ \item Solucion:\\
+Seleccionar S jugadores de entre la lista de jugadores de forma que se optimice la suma de los tiros cortos y largos teniendo en cuenta que se tienen que cubrir al menos 2 puestos de pivots, 3 de aleros y que debe de haber tan solo un jugador que pueda jugar como base y que no podemos sobrepasar el presupuesto M
+    
+    
+\item Propiedades:\\
+\begin{math}
+ x_i
+\end{math}
+- Jugador i con \begin{math}
+                 i = [0,N)\\
+x_i.getValorCortos
+\end{math}
+- Valor de los tiros cortos del jugador i\\
+\begin{math}
+x_i.getValorLargos
+\end{math}
+- Valor de los tiros largos del jugador i\\
+ \begin{math}
+ x_i.getCache
+ \end{math}
+ - Cache del jugador\\
+ 
+ 
+ \item Restricciones:
+
+ \begin{equation}
+  \sum_{i \in [0,N]}{x_i .getCache} \leq M
+ \end{equation}
+ La suma de los caches de los jugadores seleccionados no puede superar el presupuesto del entrenador.
+
+  \begin{equation}
+  \sum_{i \in [0,N]}{x_i} = S
+ \end{equation}
+ Debemos de seleccionar un numero S de jugadores de entre los disponibles.
+ 
+ \begin{equation}
+  \sum_{i / x_i.getPos1=="Base" | x_i.getPos2=="Base"}{x_i} = 1
+ \end{equation}
+ Se debe de seleccionar al menos un jugador que pueda jugar como base.
+ 
+\begin{equation}
+  \sum_{i / x_i.getPos1=="Alero" | x_i.getPos2=="Alero"}{x_i} \geq 3
+ \end{equation}
+ Se deben de seleccionar al menos 3 aleros
+
+\begin{equation}
+  \sum_{i / x_i.getPos1=="Pivot" | x_i.getPos2=="Pivot"}{x_i} \geq 2
+ \end{equation}
+ Se deben de seleccionar al menos 2 pivots\\
+ 
+ 
+ \item Solucion optima:\\
+
+\begin{equation*}
+max  \sum_{i \in [0,N]}{x_i.getValorCortos}+\sum_{i \in [0,N}{x_i.getValorLargos}
+\end{equation*}
+
+
+\end{enumerate}
+
+
+
+\section{Resolver el problema por Programacion lineal o Programacion linea entera, para ello:}
+
+\subsection{Indique razonadamente si es adecuado usar PL ó PLI}
+
+Dado que estamos tratando con datos que son numeros enteros, podemos afirmar que el uso de PLI es el adecuado. De hecho, si usasemos PL seria posible que obteniesemos soluciones no válidas, como por ejemplo que sólo se seleccione la mitad de un jugador.
+
+\subsection{Completar la ficha de descripción de la solucion mediante la programación lineal. Justifique porque ha incluido cada variable y cada restricción.}
+
+\subsection{Genere un archivo denominado "suplentes.txt" con los datos del escenario de entrada de forma similar a como se ha realizado en las clases de prácticas para otros problemas}
+
+\subsection{Desarolle un proyecto que resuelva el problema especificado por la técnica indicada. Tenga en cuenta que debe dar una implementación general qque genere la solución requerida para cualquier problema de entrada, y no sólo para el escenario concreto que se proporciona en este enunciado.}
+
+\subsection{Dicho proyecto debe incluir un test de prieba que genere la solución para el escenario previamente descrito. Debe entregar tanto el archivo en formato LPSolve generado, como la solución obtenida para dicho escenario.}
+
+
+
+\section{Resolver el problema mediante algoritmo genético, para ello:}
+\subsection{¿Qué tipo o tipos de cromosomas son los más adecuados para resolver el problema y por qué?}
+
+\subsection{Complete la ficha de desecripción de la solucion mediante algoritmo genético.}
+
+\subsection{Desarrolle un proyecto que resuelva el problema especificado por la tecnica indicada. Tenga en cuenta que debe dar una implementación general que genere la ssilucion requerida para cualquier problema de entrada, y no solo para el escenario concreto que se proporciona en este enunciado.}
+
+\subsection{Complete el test de prieba e indique qué solucion obtiene para el problema propuesto en el enunciado. Los datos del problema se facilitan en el fichero "suplentes.txt".}
+
+\section{Anexos}
+\subsection{Codigo completo}
+\subsection{Volcado de pantalla de los resultados obtenidos por cada prueba realizada}
+\end{document}
