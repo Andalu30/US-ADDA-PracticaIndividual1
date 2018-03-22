@@ -1,0 +1,203 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath} %Usado para omitir el numero en las ecuaciones
+%opening
+\title{ADDA - Practica Individual 1}
+\author{Juan Arteaga Carmona}
+\date{Jueves 19 de Abril de 2018}
+
+\begin{document}
+\maketitle
+
+\section{Complete la ficha de descripcion del problema}
+
+
+\begin{enumerate}
+ \item Tipos:\\
+ S - SolucionProblemaMochila\\
+ A - List\textless Jugador\textgreater
+
+ \item Propiedades compartidas:\\
+ N - Integer - Numero total de jugadores\\
+ M - Integer - Presupuesto\\
+ S - Integer - Numero de jugadores que hay que seleccionar\\
+ LJ - List\textless Jugador\textgreater - Lista de jugadores disponibles\\
+ \item Solucion:\\
+Seleccionar S jugadores de entre la lista de jugadores de forma que se optimice la suma de los tiros cortos y largos teniendo en cuenta que se tienen que cubrir al menos 2 puestos de pivots, 3 de aleros y que debe de haber tan solo un jugador que pueda jugar como base y que no podemos sobrepasar el presupuesto M
+
+
+\item Propiedades:\\
+\begin{math}
+ x_i
+\end{math}
+- Jugador i con \begin{math}
+                 i = [0,N)\\
+x_i.getValorCortos
+\end{math}
+- Valor de los tiros cortos del jugador i\\
+\begin{math}
+x_i.getValorLargos
+\end{math}
+- Valor de los tiros largos del jugador i\\
+ \begin{math}
+ x_i.getCache
+ \end{math}
+ - Cache del jugador\\
+
+
+ \item Restricciones:
+
+ \begin{equation}
+  \sum_{i \in [0,N]}{x_i .getCache} \leq M
+ \end{equation}
+ La suma de los caches de los jugadores seleccionados no puede superar el presupuesto del entrenador.
+
+  \begin{equation}
+  \sum_{i \in [0,N]}{x_i} = S
+ \end{equation}
+ Debemos de seleccionar un numero S de jugadores de entre los disponibles.
+
+ \begin{equation}
+  \sum_{i / x_i.getPos1=="Base" | x_i.getPos2=="Base"}{x_i} = 1
+ \end{equation}
+ Se debe de seleccionar al menos un jugador que pueda jugar como base.
+
+\begin{equation}
+  \sum_{i / x_i.getPos1=="Alero" | x_i.getPos2=="Alero"}{x_i} \geq 3
+ \end{equation}
+ Se deben de seleccionar al menos 3 aleros
+
+\begin{equation}
+  \sum_{i / x_i.getPos1=="Pivot" | x_i.getPos2=="Pivot"}{x_i} \geq 2
+ \end{equation}
+ Se deben de seleccionar al menos 2 pivots\\
+
+
+ \item Solucion optima:\\
+
+\begin{equation*}
+max  \sum_{i \in [0,N]}{x_i.getValorCortos}+\sum_{i \in [0,N}{x_i.getValorLargos}
+\end{equation*}
+
+
+\end{enumerate}
+
+
+
+\section{Resolver el problema por Programacion lineal o Programacion linea entera, para ello:}
+
+\subsection{Indique razonadamente si es adecuado usar PL ó PLI}
+
+Dado que estamos tratando con datos que son numeros enteros, podemos afirmar que el uso de PLI es el adecuado. De hecho, si usasemos PL seria posible que obteniesemos soluciones no válidas, como por ejemplo que sólo se seleccione la mitad de un jugador.
+
+\subsection{Completar la ficha de descripción de la solucion mediante la programación lineal. Justifique porque ha incluido cada variable y cada restricción.}
+
+\begin{enumerate}
+\item Propiedades compartidas:\\
+N - Integer - Numero total de jugadores\\
+M - Integer - Presupuesto\\
+S - Integer - Numero de jugadores que hay que seleccionar\\
+LJ - List\textless Jugador\textgreater - Lista de jugadores disponibles\\
+\item Variables:\\
+\begin{math}
+ x_i
+\end{math}
+- Jugador i con \begin{math}
+                 i = [0,N)\\
+x_i.getValorCortos
+\end{math}
+- Valor de los tiros cortos del jugador i\\
+\begin{math}
+x_i.getValorLargos
+\end{math}
+- Valor de los tiros largos del jugador i\\
+ \begin{math}
+ x_i.getCache
+ \end{math}
+ - Cache del jugador\\
+
+\item Restricciones:\\
+\setcounter{equation}{0}
+\begin{equation}
+ \sum_{i \in [0,N]}{x_i .getCache} \leq M
+\end{equation}
+
+ \begin{equation}
+ \sum_{i \in [0,N]}{x_i} = S
+\end{equation}
+
+\begin{equation}
+ \sum_{i / x_i.getPos1=="Base" | x_i.getPos2=="Base"}{x_i} = 1
+\end{equation}
+
+\begin{equation}
+ \sum_{i / x_i.getPos1=="Alero" | x_i.getPos2=="Alero"}{x_i} \geq 3
+\end{equation}
+
+\begin{equation}
+ \sum_{i / x_i.getPos1=="Pivot" | x_i.getPos2=="Pivot"}{x_i} \geq 2
+\end{equation}
+
+\item Funcion objetivo:
+\begin{equation*}
+max  \sum_{i \in [0,N]}{x_i.getValorCortos}+\sum_{i \in [0,N}{x_i.getValorLargos}
+\end{equation*}
+
+\end{enumerate}
+
+
+\subsection{Genere un archivo denominado "suplentes.txt" con los datos del escenario de entrada de forma similar a como se ha realizado en las clases de prácticas para otros problemas}
+Archivo con los datos iniciales del problema:
+\begin{verbatim}
+  0,Alex,Alero,Escolta,1,España,2,5,1
+  1,Carlos,Ala-Pivot,Pivot,4,España,4,4,4
+  2,Jordi,Pivot,Ala-Pivot,3,España,5,3,3
+  3,Victor,Escolta,Ala-Pivot,1,España,1,3,1
+  4,Fran,Ala-Pivot,Escolta,2,España,2,5,2
+  5,Michael,Base,Escolta,3,USA,3,3,5
+  6,Drazen,Pivot,Escolta,1,Croacia,2,1,4
+  7,Emanuel,Base,Pivot,2,Argentina,2,3,2
+  8,Toni,Alero,Pivot,2,Croacia,2,5,2
+  9,Yao,Ala-Pivot,Alero,3,Francia,3,3,3
+  10,Pablo,Base,Escolta,4,Argentina,4,4,4
+  11,Dino,Pivot,Pivot,2,Croacia,2,2,2
+  12,Lamarcus,Base,Ala-Pivot,2,USA,2,2,2
+  13,Mark,Alero,Pivot,1,USA,1,5,3
+  14,Juan,Base,Base,3,Argentina,3,3,3
+  15,Homero,Pivot,Ala-Pivot,4,Argentina,4,2,4
+  16,Chris,Base,Base,5,USA,5,5,5
+  17,Joseph,Ala-Pivot,Escolta,1,Francia,1,5,3
+  18,Zoran,Pivot,Alero,2,Croacia,4,3,2
+  19,Laurent,Base,Escolta,3,Francia,3,3,3
+\end{verbatim}
+\subsection{Desarolle un proyecto que resuelva el problema especificado por la técnica indicada. Tenga en cuenta que debe dar una implementación general qque genere la solución requerida para cualquier problema de entrada, y no sólo para el escenario concreto que se proporciona en este enunciado.}
+
+\subsection{Dicho proyecto debe incluir un test de prieba que genere la solución para el escenario previamente descrito. Debe entregar tanto el archivo en formato LPSolve generado, como la solución obtenida para dicho escenario.}
+
+Archivo de solucion generado:
+\begin{verbatim}
+  max: 6*x0 + 8*x1 + 6*x2 + 4*x3 + 7*x4 + 8*x5 + 5*x6 + 5*x7 + 7*x8 + 6*x9 + 8*x10 + 4*x11 + 4*x12 + 8*x13 + 6*x14 + 6*x15 + 10*x16 + 8*x17 + 5*x18 + 6*x19;
+
+  x0+x1+x2+x3+x4+x5+x6+x7+x8+x9+x10+x11+x12+x13+x14+x15+x16+x17+x18+x19 = 7;
+  1*x0+4*x1+3*x2+1*x3+2*x4+3*x5+1*x6+2*x7+2*x8+3*x9+4*x10+2*x11+2*x12+1*x13+3*x14+4*x15+5*x16+1*x17+2*x18+3*x19 <= 10;
+  x5+x7+x10+x12+x14+x16+x19+0 = 1;
+  x1+x2+x6+x7+x8+x11+x13+x15+x18+0 >= 2;
+  x0+x8+x9+x13+x18+0 >= 3;
+
+  bin x0 x1 x2 x3 x4 x5 x6 x7 x8 x9 x10 x11 x12 x13 x14 x15 x16 x17 x18 x19 ;
+\end{verbatim}
+
+
+\section{Resolver el problema mediante algoritmo genético, para ello:}
+\subsection{¿Qué tipo o tipos de cromosomas son los más adecuados para resolver el problema y por qué?}
+
+\subsection{Complete la ficha de desecripción de la solucion mediante algoritmo genético.}
+
+\subsection{Desarrolle un proyecto que resuelva el problema especificado por la tecnica indicada. Tenga en cuenta que debe dar una implementación general que genere la ssilucion requerida para cualquier problema de entrada, y no solo para el escenario concreto que se proporciona en este enunciado.}
+
+\subsection{Complete el test de prieba e indique qué solucion obtiene para el problema propuesto en el enunciado. Los datos del problema se facilitan en el fichero "suplentes.txt".}
+
+\section{Anexos}
+\subsection{Codigo completo}
+\subsection{Volcado de pantalla de los resultados obtenidos por cada prueba realizada}
+\end{document}
