@@ -21,7 +21,7 @@ public class ProblemaBaloncesto {
 		Integer presupuesto = 10;
 		Integer seleccionarJugadores = 7;
 		
-		List<Jugador> jugadores = getJugadoresDesdeArchivo("DatosProblema.txt");
+		List<Jugador> jugadores = getJugadoresDesdeArchivo("suplentes.txt");
 
 		
 		
@@ -67,10 +67,7 @@ public class ProblemaBaloncesto {
 		
 		
 		//Pivots
-		for (int i = 0; i < jugadores.size(); i++) {
-			System.out.println(jugadores.get(i));
-			System.out.println(jugadores.get(i).getPos1());
-			
+		for (int i = 0; i < jugadores.size(); i++) {			
 			if( jugadores.get(i).getPos1().equals("Pivot") || jugadores.get(i).getPos2().equals("Pivot")) {
 				r += "x"+i+"+";
 			}
@@ -79,10 +76,7 @@ public class ProblemaBaloncesto {
 		
 		
 		//Aleros
-		for (int i = 0; i < jugadores.size(); i++) {
-			System.out.println(jugadores.get(i));
-			System.out.println(jugadores.get(i).getPos1());
-			
+		for (int i = 0; i < jugadores.size(); i++) {			
 			if( jugadores.get(i).getPos1().equals("Alero") || jugadores.get(i).getPos2().equals("Alero")) {
 				r += "x"+i+"+";
 			}
@@ -110,24 +104,33 @@ public class ProblemaBaloncesto {
 //-------------------------------------------------------------------
 
 		
-		
-		
 		AlgoritmoPLI a = Algoritmos.createPLI("ArchivoLPSolveGenerado.txt");
+		
+		List<String> NombresSolucion = new ArrayList<>();
+		
 		a.ejecuta();
-		
-		List<String> Mapsolucion = new ArrayList();
-		
+				
 		double[] solucion = a.getSolucion();
 		for (int i=0;i<solucion.length;i++) {
-//			System.out.println(solucion[i]);
 			if (solucion[i]==1.) {
-				Mapsolucion.add(jugadores.get(i).getNombre());
-				System.out.println("El jugador "+jugadores.get(i)+" es escogido.");
+				NombresSolucion.add(jugadores.get(i).getNombre());
 			}
 		}
-		System.out.println(Mapsolucion);
+	
+		
+		//Impresiones por pantalla:
+		System.out.println("Se ha generado un archivo llamado \"ArchivoLPSolveGenerado.txt\" que contiene la definición de la solucion del problema en formato LPSolve");
+		System.out.println("\nUna vez ejecutado, esta es la solución al problema:");
+		System.out.println(NombresSolucion);
 	}
 
+	
+	
+	
+	
+	
+	
+	
 	public static List<Jugador> getJugadoresDesdeArchivo(String path){
 		List<Jugador> res = new ArrayList<>();
 	
