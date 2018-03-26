@@ -1,98 +1,122 @@
-\documentclass[a4paper,11pt]{article}
+\documentclass[a4paper,12pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath} %Usado para omitir el numero en las ecuaciones
-%opening
-\title{ADDA - Practica Individual 1}
-\author{Juan Arteaga Carmona}
-\date{Jueves 19 de Abril de 2018}
+\usepackage[spanish]{babel}
+\usepackage{listings}
+\lstset{
+basicstyle=\small\ttfamily,
+columns=flexible,
+breaklines=true
+}
+
+\title{ADDA - Practica Individual 1\\ Problema 3 - Seguimiento}
+\author{Juan Arteaga Carmona\\TI-2}
+\date{\today}
 
 \begin{document}
 \maketitle
 
-\section{Complete la ficha de descripcion del problema}
+\section{Complete la ficha de descripción del problema}
 
 
-\begin{enumerate}
+\begin{itemize}
  \item Tipos:\\
  S - SolucionProblemaMochila\\
  A - List\textless Jugador\textgreater
 
  \item Propiedades compartidas:\\
- N - Integer - Numero total de jugadores\\
+ N - Integer - Número total de jugadores\\
  M - Integer - Presupuesto\\
- S - Integer - Numero de jugadores que hay que seleccionar\\
+ S - Integer - Número de jugadores que hay que seleccionar\\
  LJ - List\textless Jugador\textgreater - Lista de jugadores disponibles\\
  \item Solucion:\\
-Seleccionar S jugadores de entre la lista de jugadores de forma que se optimice la suma de los tiros cortos y largos teniendo en cuenta que se tienen que cubrir al menos 2 puestos de pivots, 3 de aleros y que debe de haber tan solo un jugador que pueda jugar como base y que no podemos sobrepasar el presupuesto M
+Seleccionar S jugadores de entre la lista de jugadores de forma que se optimice
+la suma de los tiros cortos y largos teniendo en cuenta que no podemos sobrepasar el presupuesto M, se tienen que cubrir
+ al menos 2 puestos de pivots, 3 de aleros y que debe de haber tan solo un jugador
+ que pueda jugar como base.
 
 
 \item Propiedades:\\
 \begin{math}
  x_i
 \end{math}
-- Jugador i con \begin{math}
-                 i = [0,N)\\
-x_i.getValorCortos
+- Jugador i\\
+\begin{math}
+VC_i
 \end{math}
 - Valor de los tiros cortos del jugador i\\
 \begin{math}
-x_i.getValorLargos
+VL_i
 \end{math}
 - Valor de los tiros largos del jugador i\\
  \begin{math}
- x_i.getCache
+CA_i
  \end{math}
  - Cache del jugador\\
+ \begin{math}
+JisBASE_i
+ \end{math}
+ - Indicador de posicion de base para el jugador i\\
+ \begin{math}
+JisPIV_i
+ \end{math}
+ - Indicador de posicion de pivot para el jugador i\\
+ \begin{math}
+JisALE_i
+ \end{math}
+ - Indicador de posicion de alero para el jugador i\\
 
 
  \item Restricciones:
 
  \begin{equation}
-  \sum_{i \in [0,N]}{x_i .getCache} \leq M
+  \sum_{i \in [0,N)}{x_i \, CA_i} \leq M
  \end{equation}
  La suma de los caches de los jugadores seleccionados no puede superar el presupuesto del entrenador.
 
   \begin{equation}
-  \sum_{i \in [0,N]}{x_i} = S
+  \sum_{i \in [0,N)}{x_i} = S
  \end{equation}
  Debemos de seleccionar un numero S de jugadores de entre los disponibles.
 
  \begin{equation}
-  \sum_{i / x_i.getPos1=="Base" | x_i.getPos2=="Base"}{x_i} = 1
+  \sum_{i \in [0,N)}{x_i \, JisBASE_i} = 1
  \end{equation}
- Se debe de seleccionar al menos un jugador que pueda jugar como base.
+ Se debe de seleccionar un jugador que pueda jugar como base.
 
 \begin{equation}
-  \sum_{i / x_i.getPos1=="Alero" | x_i.getPos2=="Alero"}{x_i} \geq 3
+  \sum_{i \in [0,N)}{x_i \, JisALE_i} \geq 3
  \end{equation}
  Se deben de seleccionar al menos 3 aleros
 
 \begin{equation}
-  \sum_{i / x_i.getPos1=="Pivot" | x_i.getPos2=="Pivot"}{x_i} \geq 2
+  \sum_{i \in [0,N)}{x_i \, JisPIV_i} \geq 2
  \end{equation}
  Se deben de seleccionar al menos 2 pivots\\
 
 
- \item Solucion optima:\\
+ \item Solución óptima:\\
 
 \begin{equation*}
-max  \sum_{i \in [0,N]}{x_i.getValorCortos}+\sum_{i \in [0,N}{x_i.getValorLargos}
+max  \sum_{i \in [0,N)}{x_i \, VC_i}+\sum_{i \in [0,N)}{x_i \, VL_i}
 \end{equation*}
 
 
-\end{enumerate}
+\end{itemize}
 
 
-
+%--------------------Programaciń lineal-------------------%
 \section{Resolver el problema por Programacion lineal o Programacion linea entera, para ello:}
 
-\subsection{Indique razonadamente si es adecuado usar PL ó PLI}
+\subsection{Indique razonadamente si es adecuado usar PL o PLI}
 
-Dado que estamos tratando con datos que son numeros enteros, podemos afirmar que el uso de PLI es el adecuado. De hecho, si usasemos PL seria posible que obteniesemos soluciones no válidas, como por ejemplo que sólo se seleccione la mitad de un jugador.
+Dado que estamos tratando con datos que son números enteros, podemos afirmar que el uso de PLI
+es el adecuado. De hecho, si usasemos PL sería posible que obteniesemos soluciones no válidas,
+como por ejemplo que sólo se seleccione la mitad de un jugador.
 
 \subsection{Completar la ficha de descripción de la solucion mediante la programación lineal. Justifique porque ha incluido cada variable y cada restricción.}
 
-\begin{enumerate}
+\begin{itemize}
 \item Propiedades compartidas:\\
 N - Integer - Numero total de jugadores\\
 M - Integer - Presupuesto\\
@@ -102,51 +126,47 @@ LJ - List\textless Jugador\textgreater - Lista de jugadores disponibles\\
 \begin{math}
  x_i
 \end{math}
-- Jugador i con \begin{math}
-                 i = [0,N)\\
-x_i.getValorCortos
+- Jugador i con
+\begin{math}
+  i \in [0,N)\\
+VC_i
 \end{math}
 - Valor de los tiros cortos del jugador i\\
 \begin{math}
-x_i.getValorLargos
+VL_i
 \end{math}
 - Valor de los tiros largos del jugador i\\
  \begin{math}
- x_i.getCache
+CA_i
  \end{math}
  - Cache del jugador\\
 
 \item Restricciones:\\
 \setcounter{equation}{0}
 \begin{equation}
- \sum_{i \in [0,N]}{x_i .getCache} \leq M
+ \sum_{i \in [0,N]}{x_i \, CA_i} \leq M
 \end{equation}
-
  \begin{equation}
  \sum_{i \in [0,N]}{x_i} = S
 \end{equation}
-
 \begin{equation}
  \sum_{i / x_i.getPos1=="Base" | x_i.getPos2=="Base"}{x_i} = 1
 \end{equation}
-
 \begin{equation}
  \sum_{i / x_i.getPos1=="Alero" | x_i.getPos2=="Alero"}{x_i} \geq 3
 \end{equation}
-
 \begin{equation}
  \sum_{i / x_i.getPos1=="Pivot" | x_i.getPos2=="Pivot"}{x_i} \geq 2
 \end{equation}
-
-\item Funcion objetivo:
+\item{Función objetivo:}
 \begin{equation*}
-max  \sum_{i \in [0,N]}{x_i.getValorCortos}+\sum_{i \in [0,N}{x_i.getValorLargos}
+max  \sum_{i \in [0,N)}{x_i \, VC_i}+\sum_{i \in [0,N)}{x_i \, VL_i}
 \end{equation*}
+\end{itemize}
 
-\end{enumerate}
 
-
-\subsection{Genere un archivo denominado "suplentes.txt" con los datos del escenario de entrada de forma similar a como se ha realizado en las clases de prácticas para otros problemas}
+\subsection{Genere un archivo denominado 'suplentes.txt' con los datos del escenario de entrada
+de forma similar a como se ha realizado en las clases de prácticas para otros problemas}
 Archivo con los datos iniciales del problema:
 \begin{verbatim}
   0,Alex,Alero,Escolta,1,España,2,5,1
@@ -170,12 +190,19 @@ Archivo con los datos iniciales del problema:
   18,Zoran,Pivot,Alero,2,Croacia,4,3,2
   19,Laurent,Base,Escolta,3,Francia,3,3,3
 \end{verbatim}
-\subsection{Desarolle un proyecto que resuelva el problema especificado por la técnica indicada. Tenga en cuenta que debe dar una implementación general qque genere la solución requerida para cualquier problema de entrada, y no sólo para el escenario concreto que se proporciona en este enunciado.}
+Este archivo es un volcado directo de los datos presentados en el enunciado, cada columna de la tabla esta separada por una coma.
+Una vez se ejecute el programa estas lineas serán leidas y se creará una lista de jugadores que representan nuestro datos iniciales.
+\subsection{Desarolle un proyecto que resuelva el problema especificado por la técnica indicada.
+Tenga en cuenta que debe dar una implementación general que genere la solución requerida para
+cualquier problema de entrada, y no sólo para el escenario concreto que se proporciona en este enunciado.}
+El código del proyecto se puede consultar en los anexos.
 
-\subsection{Dicho proyecto debe incluir un test de prieba que genere la solución para el escenario previamente descrito. Debe entregar tanto el archivo en formato LPSolve generado, como la solución obtenida para dicho escenario.}
+\subsection{Dicho proyecto debe incluir un test de prueba que genere la solución para el escenario previamente descrito.
+Debe entregar tanto el archivo en formato LPSolve generado, como la solución obtenida para dicho escenario.}
 
 Archivo de solucion generado:
-\begin{verbatim}
+
+\begin{lstlisting}
   max: 6*x0 + 8*x1 + 6*x2 + 4*x3 + 7*x4 + 8*x5 + 5*x6 + 5*x7 + 7*x8 + 6*x9 + 8*x10 + 4*x11 + 4*x12 + 8*x13 + 6*x14 + 6*x15 + 10*x16 + 8*x17 + 5*x18 + 6*x19;
 
   x0+x1+x2+x3+x4+x5+x6+x7+x8+x9+x10+x11+x12+x13+x14+x15+x16+x17+x18+x19 = 7;
@@ -185,19 +212,31 @@ Archivo de solucion generado:
   x0+x8+x9+x13+x18+0 >= 3;
 
   bin x0 x1 x2 x3 x4 x5 x6 x7 x8 x9 x10 x11 x12 x13 x14 x15 x16 x17 x18 x19 ;
-\end{verbatim}
+\end{lstlisting}
 
 
+
+%----------------Algoritmo genetico------------------%
 \section{Resolver el problema mediante algoritmo genético, para ello:}
 \subsection{¿Qué tipo o tipos de cromosomas son los más adecuados para resolver el problema y por qué?}
-
+WIP - En este problema debemos de seleccionar un numero de personas, por lo tanto, el cromosoma mas intuitivo sería el cromosoma binario.
 \subsection{Complete la ficha de desecripción de la solucion mediante algoritmo genético.}
 
 \subsection{Desarrolle un proyecto que resuelva el problema especificado por la tecnica indicada. Tenga en cuenta que debe dar una implementación general que genere la ssilucion requerida para cualquier problema de entrada, y no solo para el escenario concreto que se proporciona en este enunciado.}
-
-\subsection{Complete el test de prieba e indique qué solucion obtiene para el problema propuesto en el enunciado. Los datos del problema se facilitan en el fichero "suplentes.txt".}
+WIP - Al igual que con el código de la parte de PLI, es posible consultarlo en el anexo.
+\subsection{Complete el test de prueba e indique qué solucion obtiene para el problema propuesto en el enunciado. Los datos del problema se facilitan en el fichero "suplentes.txt".}
 
 \section{Anexos}
 \subsection{Codigo completo}
+\subsubsection{Generador de jugadores}
+WIP - En el archivo comprimido
+\subsubsection{Programación lineal}
+WIP - En el archivo comprimido
+\subsubsection{Algoritmo genetico}
+WIP
+
+
+
 \subsection{Volcado de pantalla de los resultados obtenidos por cada prueba realizada}
+WIP
 \end{document}
