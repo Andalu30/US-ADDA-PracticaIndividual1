@@ -3,9 +3,12 @@ package code;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.PrintWriter;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import test.test1;
 import us.lsi.algoritmos.Algoritmos;
@@ -20,6 +23,9 @@ public class ProblemaBaloncesto {
 		
 		List<Jugador> jugadores = getJugadoresDesdeArchivo("DatosProblema.txt");
 
+		
+		
+		
 		//Inicializacion de la string
 		String r = "";
 		r = r+"max: ";
@@ -32,6 +38,16 @@ public class ProblemaBaloncesto {
 		r += ";\n\n";
 		
 		//Restricciones.
+		
+		//Suma de cache<= presupuesto
+				for (int i = 0; i < jugadores.size(); i++) {
+					if (i!=0) r = r+"+";
+					r += jugadores.get(i).getCache()+"*x" + i;
+				}
+				r+= " <= "+presupuesto+";\n";
+				
+		
+		
 		//Seleccionar solamente n jugadores
 		for (int i = 0; i < jugadores.size(); i++) {
 			if (i!=0) r = r+"+";
@@ -39,12 +55,6 @@ public class ProblemaBaloncesto {
 		}
 		r += " = "+seleccionarJugadores+";\n";
 		
-		//Suma de cache<= presupuesto
-		for (int i = 0; i < jugadores.size(); i++) {
-			if (i!=0) r = r+"+";
-			r += jugadores.get(i).getCache()+"*x" + i;
-		}
-		r+= " <= "+presupuesto+";\n";
 		
 		
 		//Solo un base
@@ -84,20 +94,38 @@ public class ProblemaBaloncesto {
 			r+="x"+i+" ";
 		}
 		r+=";";
+		//--------------------------------------------------
+		//Guardar la string a un archivo
 		
-		System.out.println("\n\nArchivo--------------");
-		System.out.println(r);
-		System.out.println("--------------Archivo\n\n");
+		try {
+			PrintWriter out = new PrintWriter("ArchivoLPSolveGenerado.txt");
+			out.print(r);
+			out.close();
+		} catch (Exception e) {
+			System.err.println("OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD to fix this!");
+		}
+		
+		
+		
 //-------------------------------------------------------------------
-		AlgoritmoPLI a = Algoritmos.createPLI("testGenerated.txt");
+
+		
+		
+		
+		AlgoritmoPLI a = Algoritmos.createPLI("ArchivoLPSolveGenerado.txt");
 		a.ejecuta();
+		
+		List<String> Mapsolucion = new ArrayList();
+		
 		double[] solucion = a.getSolucion();
 		for (int i=0;i<solucion.length;i++) {
-			System.out.println(solucion[i]);
+//			System.out.println(solucion[i]);
 			if (solucion[i]==1.) {
-				System.out.println("El jugador "+test1.getJugadoresDesdeArchivo("DatosProblema.txt").get(i)+" es escogido.");
+				Mapsolucion.add(jugadores.get(i).getNombre());
+				System.out.println("El jugador "+jugadores.get(i)+" es escogido.");
 			}
 		}
+		System.out.println(Mapsolucion);
 	}
 
 	public static List<Jugador> getJugadoresDesdeArchivo(String path){

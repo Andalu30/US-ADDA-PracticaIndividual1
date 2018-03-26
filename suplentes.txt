@@ -1,20 +1,20 @@
-max: 6*x0 + 8*x1 + 6*x2 + 4*x3 + 7*x4 + 8*x5 + 5*x6 + 5*x7 + 7*x8 + 6*x9 + 8*x10 + 4*x11 + 4*x12 + 8*x13 + 6*x14 + 6*x15 + 10*x16 + 8*x17 + 5*x18 + 6*x19;
-
-
-//Presupuesto
- 1*x0 + 4*x1 + 3*x2 + 1*x3 + 2*x4 + 3*x5 + 1*x6 + 2*x7 + 2*x8 + 3*x9 + 4*x10 +2*x11 +2*x12 +1*x13 +3*x14 +4*x15 + 5*x16 +1*x17 +2*x18 +3*x19 <= 10;
-
-//Elegir 7 jugadores
-x0+x1+x2+x3+x4+x5+x6+x7+x8+x9+x10+x11+x12+x13+x14+x15+x16+x17+x18+x19 = 7;
-
-//Solamente un base
-x5+x7+x10+x12+x14+x16+x19 = 1;
-
-//3 o mas aleros
-x0+x8+x9+x13+x18 >= 3;
-
-//2 o mas pivots
-x1+x2+x6+x7+x8+x11+x13+x15+x18 >= 2;
-
-bin x0 x1 x2 x3 x4 x5 x6 x7 x8 x9 x10 x11 x12 x13 x14 x15 x16 x17 x18 x19;
-
+0,Alex,Alero,Escolta,1,España,2,5,1
+1,Carlos,Ala-Pivot,Pivot,4,España,4,4,4
+2,Jordi,Pivot,Ala-Pivot,3,España,5,3,3
+3,Victor,Escolta,Ala-Pivot,1,España,1,3,1
+4,Fran,Ala-Pivot,Escolta,2,España,2,5,2
+5,Michael,Base,Escolta,3,USA,3,3,5
+6,Drazen,Pivot,Escolta,1,Croacia,2,1,4
+7,Emanuel,Base,Pivot,2,Argentina,2,3,2
+8,Toni,Alero,Pivot,2,Croacia,2,5,2
+9,Yao,Ala-Pivot,Alero,3,Francia,3,3,3
+10,Pablo,Base,Escolta,4,Argentina,4,4,4
+11,Dino,Pivot,Pivot,2,Croacia,2,2,2
+12,Lamarcus,Base,Ala-Pivot,2,USA,2,2,2
+13,Mark,Alero,Pivot,1,USA,1,5,3
+14,Juan,Base,Base,3,Argentina,3,3,3
+15,Homero,Pivot,Ala-Pivot,4,Argentina,4,2,4
+16,Chris,Base,Base,5,USA,5,5,5
+17,Joseph,Ala-Pivot,Escolta,1,Francia,1,5,3
+18,Zoran,Pivot,Alero,2,Croacia,4,3,2
+19,Laurent,Base,Escolta,3,Francia,3,3,3
