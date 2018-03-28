@@ -8,7 +8,7 @@
 
 
 
-\title{ADDA - Practica Individual 1\\ Problema 3 - Seguimiento}
+\title{ADDA - Practica Individual 1\\ Problema 3}
 \author{Juan Arteaga Carmona\\TI-2}
 \date{\today}
 
@@ -213,30 +213,53 @@ El código del proyecto se puede consultar en los anexos.
 \subsection{Dicho proyecto debe incluir un test de prueba que genere la solución para el escenario previamente descrito.
 Debe entregar tanto el archivo en formato LPSolve generado, como la solución obtenida para dicho escenario.}
 
-Archivo de solucion generado:
+\begin{itemize}
+  \item Archivo con formato LPsolve:
+  \inputminted[fontsize=\footnotesize,breaklines]{text}{ArchivoLPSolveGenerado.txt}
+  \item Solucion obtenida:
+  \\En los anexos tambien existe una captura de pantalla.
+  %TODO: Crear e importar un archivo que contenga la solucion.
+\end{itemize}
 
-\begin{lstlisting}
-max: 6*x0 + 8*x1 + 6*x2 + 4*x3 + 7*x4 + 8*x5 + 5*x6 + 5*x7 + 7*x8 + 6*x9 + 8*x10 + 4*x11 + 4*x12 + 8*x13 + 6*x14 + 6*x15 + 10*x16 + 8*x17 + 5*x18 + 6*x19;
-
-1*x0+4*x1+3*x2+1*x3+2*x4+3*x5+1*x6+2*x7+2*x8+3*x9+4*x10+2*x11+2*x12+1*x13+3*x14+4*x15+5*x16+1*x17+2*x18+3*x19 <= 10;
-x0+x1+x2+x3+x4+x5+x6+x7+x8+x9+x10+x11+x12+x13+x14+x15+x16+x17+x18+x19 = 7;
-x5+x7+x10+x12+x14+x16+x19+0 = 1;
-x1+x2+x6+x7+x8+x11+x13+x15+x18+0 >= 2;
-x0+x8+x9+x13+x18+0 >= 3;
-
-bin x0 x1 x2 x3 x4 x5 x6 x7 x8 x9 x10 x11 x12 x13 x14 x15 x16 x17 x18 x19 ;
-\end{lstlisting}
 
 
 
 %----------------Algoritmo genetico------------------%
 \section{Resolver el problema mediante algoritmo genético, para ello:}
 \subsection{¿Qué tipo o tipos de cromosomas son los más adecuados para resolver el problema y por qué?}
-WIP - En este problema debemos de seleccionar un numero de personas, por lo tanto, el cromosoma mas intuitivo sería el cromosoma binario.
+En este problema debemos de seleccionar un numero de jugadores entre unos disponibles.
+Por lo tanto, podriamos utilizar cualquier tipo de cromosoma de tipo valores (ValueInRangeProblem).
+Aun así, tan solo se utilizaran los valores 0 y 1, por lo que el cromosoma ideal seria el de valores binarios.
+De hecho, si no se utilizase este cromosoma se debería de controlar que los genes fuesen solo 0 o 1 para que no
+se diesen soluciones no validas como por ejemplo que solo se seleccione la mitad de un jugador o mas de una vez un mismo jugador.
 \subsection{Complete la ficha de desecripción de la solucion mediante algoritmo genético.}
 
+\begin{itemize}
+  \item E: Integer
+  \item Tipo de cromosoma: Binario
+  \item Decode:
+  \begin{itemize}
+    \item d: List\textless Integer\textgreater
+    \item d.size: S
+    \item $ d_i \in [0,1] $ - Ya que se trata de un cromosoma binario
+  \end{itemize}
+  \item Fitness: $V - r_p^2 \,k$
+  \begin{itemize}
+    \item V:
+    \item r:
+    \item k: valor grande
+  \end{itemize}
+  \item: Solucion:
+  \begin{itemize}
+    \item Map s = \{ \}
+    \item range(0,S); foreach(i -> s+(jugadores.get(i).getNombre()))
+  \end{itemize}
+\end{itemize}
+
+
+
 \subsection{Desarrolle un proyecto que resuelva el problema especificado por la tecnica indicada. Tenga en cuenta que debe dar una implementación general que genere la ssilucion requerida para cualquier problema de entrada, y no solo para el escenario concreto que se proporciona en este enunciado.}
-WIP - Al igual que con el código de la parte de PLI, es posible consultarlo en el anexo.
+Al igual que con la parte de PLI, es posible consultar el codigo en el anexo.
 \subsection{Complete el test de prueba e indique qué solucion obtiene para el problema propuesto en el enunciado. Los datos del problema se facilitan en el fichero "suplentes.txt".}
 
 \section{Anexos}
@@ -250,5 +273,8 @@ WIP - Al igual que con el código de la parte de PLI, es posible consultarlo en 
 
 
 \subsection{Volcado de pantalla de los resultados obtenidos por cada prueba realizada}
-WIP
+\subsubsection{PLI}
+\subsubsection{Algoritmo genético}
+
+
 \end{document}
