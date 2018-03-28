@@ -5,7 +5,8 @@
 \usepackage{listings}
 \usepackage{minted} %La hostia!
 \usepackage[margin=25mm]{geometry} %Margenes un poco mejor
-
+\usepackage{graphicx}
+\graphicspath{{resources/}}
 
 
 \title{ADDA - Practica Individual 1\\ Problema 3}
@@ -179,29 +180,7 @@ max  \sum_{i \in [0,N)}{x_i \, VC_i}+\sum_{i \in [0,N)}{x_i \, VL_i}
 de forma similar a como se ha realizado en las clases de prácticas para otros problemas}
 Archivo con los datos iniciales del problema:
 
-\begin{verbatim}
-0,Alex,Alero,Escolta,1,España,2,5,1
-1,Carlos,Ala-Pivot,Pivot,4,España,4,4,4
-2,Jordi,Pivot,Ala-Pivot,3,España,5,3,3
-3,Victor,Escolta,Ala-Pivot,1,España,1,3,1
-4,Fran,Ala-Pivot,Escolta,2,España,2,5,2
-5,Michael,Base,Escolta,3,USA,3,3,5
-6,Drazen,Pivot,Escolta,1,Croacia,2,1,4
-7,Emanuel,Base,Pivot,2,Argentina,2,3,2
-8,Toni,Alero,Pivot,2,Croacia,2,5,2
-9,Yao,Ala-Pivot,Alero,3,Francia,3,3,3
-10,Pablo,Base,Escolta,4,Argentina,4,4,4
-11,Dino,Pivot,Pivot,2,Croacia,2,2,2
-12,Lamarcus,Base,Ala-Pivot,2,USA,2,2,2
-13,Mark,Alero,Pivot,1,USA,1,5,3
-14,Juan,Base,Base,3,Argentina,3,3,3
-15,Homero,Pivot,Ala-Pivot,4,Argentina,4,2,4
-16,Chris,Base,Base,5,USA,5,5,5
-17,Joseph,Ala-Pivot,Escolta,1,Francia,1,5,3
-18,Zoran,Pivot,Alero,2,Croacia,4,3,2
-19,Laurent,Base,Escolta,3,Francia,3,3,3
-\end{verbatim}
-
+\inputminted[fontsize=\footnotesize,breaklines]{text}{ficheros/suplentes.txt}
 
 Este archivo es un volcado directo de los datos presentados en el enunciado, cada columna de la tabla esta separada por una coma.
 Una vez se ejecute el programa estas lineas serán leidas y se creará una lista de jugadores que representan nuestro datos iniciales.
@@ -215,10 +194,11 @@ Debe entregar tanto el archivo en formato LPSolve generado, como la solución ob
 
 \begin{itemize}
   \item Archivo con formato LPsolve:
-  \inputminted[fontsize=\footnotesize,breaklines]{text}{ArchivoLPSolveGenerado.txt}
+  \inputminted[fontsize=\footnotesize,breaklines]{text}{ficheros/ArchivoLPSolveGenerado.txt}
   \item Solucion obtenida:
-  \\En los anexos tambien existe una captura de pantalla.
-  %TODO: Crear e importar un archivo que contenga la solucion.
+  \inputminted[fontsize=\footnotesize,breaklines]{text}{ficheros/Solucion.txt}
+  En los anexos tambien existe una captura de pantalla.
+
 \end{itemize}
 
 
@@ -265,16 +245,27 @@ Al igual que con la parte de PLI, es posible consultar el codigo en el anexo.
 \section{Anexos}
 \subsection{Codigo completo}
 \subsubsection{Clase MetodosAuxiliares}
-\subsubsection{Clase Jugador}
-\inputminted[fontsize=\footnotesize,breaklines]{java}{src/code/Jugador.java}
+\inputminted[fontsize=\footnotesize,breaklines]{java}{src/andalu30/PracticaIndividual1/MetodosAuxiliares.java}
 
-\subsubsection{Clase ProblemaBaloncesto}
-\inputminted[fontsize=\footnotesize,breaklines]{java}{src/code/ProblemaBaloncesto.java}
+\subsubsection{Clase Jugador}
+\inputminted[fontsize=\footnotesize,breaklines]{java}{src/andalu30/PracticaIndividual1/Jugador.java}
+
+\subsubsection{Clase ProblemaBaloncestoPLI}
+\inputminted[fontsize=\footnotesize,breaklines]{java}{src/andalu30/PracticaIndividual1/ProblemaBaloncestoPLI.java}
 
 
 \subsection{Volcado de pantalla de los resultados obtenidos por cada prueba realizada}
-\subsubsection{PLI}
-\subsubsection{Algoritmo genético}
 
+\begin{figure}[h]
+  \includegraphics{AlgoritmoPLI.PNG}
+  \caption{Volcado de pantalla de la terminal al ejecutar la clase ProblemaBaloncestoPLI}
+  \label{fig:pli}
+\end{figure}
+
+\begin{figure}[h]
+  \includegraphics{AlgoritmoPLI.PNG}
+  \caption{Volcado de pantalla de la terminal al ejecutar la clase ProblemaBaloncestoAC}
+  \label{fig:ag}
+\end{figure}
 
 \end{document}

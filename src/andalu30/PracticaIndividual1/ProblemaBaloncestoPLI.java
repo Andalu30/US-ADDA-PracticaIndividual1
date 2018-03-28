@@ -103,12 +103,12 @@ public class ProblemaBaloncestoPLI {
 
 
 		//Impresiones por pantalla:
-		System.out.println("Se ha generado un archivo llamado \"ArchivoLPSolveGenerado.txt\" que contiene la definiciÛn de la soluciÛn del problema en formato LPSolve");
+		System.out.println("Se ha generado un archivo llamado \"ArchivoLPSolveGenerado.txt\" que contiene la definici√≥n de la soluci√≥n del problema en formato LPSolve");
 		System.out.println("Este es el archivo con formato LPSolve:\n\n"+r);
-		System.out.println("\n\nUna vez ejecutado, esta es la soluciÛn al problema (tambien se guardar· en un archivo de texto):");
+		System.out.println("\n\nUna vez ejecutado, esta es la soluci√≥n al problema (tambien se guardar√° en un archivo de texto):");
 		System.out.println(NombresSolucion);
-		
-		
+
+
 		try {
 			PrintWriter out = new PrintWriter("ficheros/Solucion.txt");
 			out.print(NombresSolucion);
@@ -117,7 +117,7 @@ public class ProblemaBaloncestoPLI {
 			System.err.println("OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD to fix this!");
 		}
 
-		
+
 	}
 
 }
