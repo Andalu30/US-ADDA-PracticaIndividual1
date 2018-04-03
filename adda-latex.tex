@@ -1,6 +1,6 @@
 \documentclass[a4paper,12pt]{article}
 %\usepackage[utf8]{inputenc} %no necesario si se usa LuaLaTeX
-\usepackage{amsmath} %Usado para omitir el numero en las ecuaciones
+\usepackage{amsmath}
 \usepackage[spanish]{babel}
 \usepackage{listings}
 \usepackage{minted} %La hostia!
@@ -182,7 +182,7 @@ Archivo con los datos iniciales del problema:
 
 \inputminted[fontsize=\footnotesize,breaklines]{text}{ficheros/suplentes.txt}
 
-Este archivo es un volcado directo de los datos presentados en el enunciado, cada columna de la tabla esta separada por una coma.
+Este archivo es un volcado directo de los datos presentados en el enunciado en formato CSV.
 Una vez se ejecute el programa estas lineas serán leidas y se creará una lista de jugadores que representan nuestro datos iniciales.
 \subsection{Desarolle un proyecto que resuelva el problema especificado por la técnica indicada.
 Tenga en cuenta que debe dar una implementación general que genere la solución requerida para
@@ -209,7 +209,7 @@ Debe entregar tanto el archivo en formato LPSolve generado, como la solución ob
 \subsection{¿Qué tipo o tipos de cromosomas son los más adecuados para resolver el problema y por qué?}
 En este problema debemos de seleccionar un numero de jugadores entre unos disponibles.
 Por lo tanto, podriamos utilizar cualquier tipo de cromosoma de tipo valores (ValueInRangeProblem).
-Aun así, tan solo se utilizaran los valores 0 y 1, por lo que el cromosoma ideal seria el de valores binarios.
+Aun así, tan solo se utilizaran los valores 0 y 1, por lo que el cromosoma ideal sería el de valores binarios.
 De hecho, si no se utilizase este cromosoma se debería de controlar que los genes fuesen solo 0 o 1 para que no
 se diesen soluciones no validas como por ejemplo que solo se seleccione la mitad de un jugador o mas de una vez un mismo jugador.
 \subsection{Complete la ficha de desecripción de la solucion mediante algoritmo genético.}
@@ -223,23 +223,57 @@ se diesen soluciones no validas como por ejemplo que solo se seleccione la mitad
     \item d.size: S
     \item $ d_i \in [0,1] $ - Ya que se trata de un cromosoma binario
   \end{itemize}
-  \item Fitness: $V - r_p^2 \,k$
+  \item Fitness: $V - r^2 \,k$
   \begin{itemize}
-    \item V:
-    \item r:
-    \item k: valor grande
+    \item V: $\sum_{i / d_i == 1}{(VC_i + VL_i)}$
+    \item r = $\sum{r_i}$
+    %presupuesto
+    \item $r_1 =
+      \begin{cases}
+        k &\mbox{si } \sum_{i / d_i == 1}{d_i.cache} > M\\
+        0 &\mbox{e.c.o.c }
+      \end{cases}
+      $
+
+    %Solo un base
+    \item $r_2 =
+      \begin{cases}
+      k &\mbox{si } \sum_{i / d_i.getPos1 == 'Base'| d_i.getPos2 == 'Base'}{d_i} \neq 1
+      \\
+      0 &\mbox{e.c.o.c}
+      \end{cases}
+      $
+
+    %Aleros
+    \item $r_3 =
+    \begin{cases}
+    k &\mbox{si } \sum_{i / d_i.getPos1 == 'Alero'| d_i.getPos2 == 'Alero'}{d_i} < 2
+    \\
+    0 &\mbox{e.c.o.c}
+    \end{cases}
+    $
+    %Pivots
+    \item $r_4 =
+    \begin{cases}
+    k &\mbox{si } \sum_{i / d_i.getPos1 == 'Pivot'| d_i.getPos2 == 'Pivot'}{d_i} < 3
+    \\
+    0 &\mbox{e.c.o.c}
+    \end{cases}
+    $
+
+    \item k: 200 - Valor grande
   \end{itemize}
   \item: Solucion:
   \begin{itemize}
-    \item Map s = \{ \}
-    \item range(0,S); foreach(i -> s+(jugadores.get(i).getNombre()))
+    \item List\textless String\textgreater s = new ArrayList\textless String\textgreater()
+    \item range(0,S).foreach(i -> s.add(jugadores.get(i).getNombre()))
   \end{itemize}
 \end{itemize}
 
 
 
 \subsection{Desarrolle un proyecto que resuelva el problema especificado por la tecnica indicada. Tenga en cuenta que debe dar una implementación general que genere la ssilucion requerida para cualquier problema de entrada, y no solo para el escenario concreto que se proporciona en este enunciado.}
-Al igual que con la parte de PLI, es posible consultar el codigo en el anexo.
+Al igual que con la parte de PLI, es posible consultar el código en el anexo.
 \subsection{Complete el test de prueba e indique qué solucion obtiene para el problema propuesto en el enunciado. Los datos del problema se facilitan en el fichero "suplentes.txt".}
 
 \section{Anexos}
@@ -253,6 +287,11 @@ Al igual que con la parte de PLI, es posible consultar el codigo en el anexo.
 \subsubsection{Clase ProblemaBaloncestoPLI}
 \inputminted[fontsize=\footnotesize,breaklines]{java}{src/andalu30/PracticaIndividual1/ProblemaBaloncestoPLI.java}
 
+\subsubsection{Clase ProblemaBaloncestoAG}
+\inputminted[fontsize=\footnotesize,breaklines]{java}{src/andalu30/PracticaIndividual1/ProblemaBaloncestoAG.java}
+
+\subsubsection{Clase TestAG}
+\inputminted[fontsize=\footnotesize,breaklines]{java}{src/andalu30/PracticaIndividual1/TestAG.java}
 
 \subsection{Volcado de pantalla de los resultados obtenidos por cada prueba realizada}
 
@@ -263,6 +302,7 @@ Al igual que con la parte de PLI, es posible consultar el codigo en el anexo.
 \end{figure}
 
 \begin{figure}[h]
+  %TODO: Cambiar
   \includegraphics{AlgoritmoPLI.PNG}
   \caption{Volcado de pantalla de la terminal al ejecutar la clase ProblemaBaloncestoAC}
   \label{fig:ag}
