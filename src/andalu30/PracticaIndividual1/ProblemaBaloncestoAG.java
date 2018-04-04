@@ -4,9 +4,8 @@ import java.util.List;
 import us.lsi.ag.ValuesInRangeChromosome;
 import us.lsi.ag.ValuesInRangeProblemAG;
 
-public class ProblemaBaloncestoAG implements ValuesInRangeProblemAG<Integer, List<String>> {
+public class ProblemaBaloncestoAG implements ValuesInRangeProblemAG<Integer, List<Integer>> {
 	private List<Jugador> jugadores;
-	private List<String> solucion;
 	private Integer  presupuesto = 10;
 	private Integer seleccionarJugadores = 7;
 	
@@ -25,15 +24,15 @@ public class ProblemaBaloncestoAG implements ValuesInRangeProblemAG<Integer, Lis
 	}
 	
 	
-	//Ni idea de para que es esto pero me obliga...
+	//Al ser binario no deberia de hacer falta, pero me obliga a usarlo...
 	@Override
 	public Integer getMax(Integer i) {
-		return null;
+		return 1;
 	}
 
 	@Override
 	public Integer getMin(Integer i) {
-		return null;
+		return 0;
 	}
 
 	@Override
@@ -41,20 +40,18 @@ public class ProblemaBaloncestoAG implements ValuesInRangeProblemAG<Integer, Lis
 		Double v = 0.;
 		Double k = 200.;
 		
+		//Numero de jugadores
 		int contAux = 0;
 		for (Integer i : cr.decode()){
 			if (i==1) {
 				contAux++;
 			}
 		}
-		if (contAux!=7) {
+		if (contAux!=seleccionarJugadores) {
 			v=-1000000.;
 		}
 		
-		
-		
-		
-		
+		//V
 		for (int i = 0; i < cr.decode().size(); i++) {
 			if (cr.decode().get(i)==1) {
 				v += jugadores.get(i).getValorCortos()+jugadores.get(i).getValorLargos();
@@ -114,22 +111,14 @@ public class ProblemaBaloncestoAG implements ValuesInRangeProblemAG<Integer, Lis
 		Double r = r1+r2+r3+r4;
 				
 		Double fitness = v - (r*k);
-		System.out.println(fitness);
+		//System.out.println(fitness);
 		
 		return fitness;
 	}
 
 	@Override
-	//TODO
-	public List<String> getSolucion(ValuesInRangeChromosome<Integer> cr) {
-		
-		for (int i = 0; i < cr.decode().size(); i++) {
-			if (cr.decode().get(i)==1) {
-				System.out.println(this.jugadores);
-				this.solucion.add(this.jugadores.get(i).getNombre());
-			}
-		}
-		return solucion;
+	public List<Integer> getSolucion(ValuesInRangeChromosome<Integer> cr) {
+		return cr.decode();
 	}
 
 

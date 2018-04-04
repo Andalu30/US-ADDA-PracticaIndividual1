@@ -80,9 +80,8 @@ public class ProblemaBaloncestoPLI {
 			out.print(r);
 			out.close();
 		} catch (Exception e) {
-			System.err.println("OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD to fix this!");
+			System.err.println("Se ha producido un error al guardar el archivo LPSolve generado. "+e.getMessage()+"\n A continuacion se imprime el texto generado que deberia de haber sido guardado en ese archivo.\n"+r);
 		}
-
 
 
 //-------------------------------------------------------------------
@@ -103,9 +102,9 @@ public class ProblemaBaloncestoPLI {
 
 
 		//Impresiones por pantalla:
-		System.out.println("Se ha generado un archivo llamado \"ArchivoLPSolveGenerado.txt\" que contiene la definici√≥n de la soluci√≥n del problema en formato LPSolve");
+		System.out.println("Se ha generado un archivo llamado \"ArchivoLPSolveGenerado.txt\" que contiene la definiciÛn de la soluciÛn del problema en formato LPSolve");
 		System.out.println("Este es el archivo con formato LPSolve:\n\n"+r);
-		System.out.println("\n\nUna vez ejecutado, esta es la soluci√≥n al problema (tambien se guardar√° en un archivo de texto):");
+		System.out.println("\n\nUna vez ejecutado, esta es la soluciÛn al problema (tambien se guardar· en un archivo de texto):");
 		System.out.println(NombresSolucion);
 
 
@@ -114,7 +113,7 @@ public class ProblemaBaloncestoPLI {
 			out.print(NombresSolucion);
 			out.close();
 		} catch (Exception e) {
-			System.err.println("OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD to fix this!");
+			System.err.println("Se ha producido un error al realizar la escritura de la solucion en un archivo. "+e.getMessage()+" Esta ha sido la solucion:\n"+NombresSolucion);
 		}
 
 

@@ -26,7 +26,7 @@ public class MetodosAuxiliares {
 			fr.close();
 
 		} catch (Exception e) {
-			System.err.println("OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD to fix this!");
+			System.err.println("Se ha procucido un error al abrir el archivo especificado en el path. "+e.getMessage());
 		}
 
 		return res;
