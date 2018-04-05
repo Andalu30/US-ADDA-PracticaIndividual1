@@ -7,10 +7,10 @@
 \usepackage[margin=25mm]{geometry} %Margenes un poco mejor
 \usepackage{graphicx}
 \graphicspath{{resources/}}
-
+\usepackage{hyperref} %URL de github y gnu
 
 \title{ADDA - Practica Individual 1\\ Problema 3}
-\author{Juan Arteaga Carmona\\TI-2}
+\author{Juan Arteaga Carmona\\(juan.arteaga41567@gmail.com)\\2º Curso - TI-2}
 \date{\today}
 
 \begin{document}
@@ -29,87 +29,62 @@
  M - Integer - Presupuesto\\
  S - Integer - Número de jugadores que hay que seleccionar\\
  LJ - List\textless Jugador\textgreater - Lista de jugadores disponibles\\
+
  \item Solucion:\\
 Seleccionar S jugadores de entre la lista de jugadores de forma que se optimice
 la suma de los tiros cortos y largos teniendo en cuenta que no podemos sobrepasar el presupuesto M, se tienen que cubrir
  al menos 2 puestos de pivots, 3 de aleros y que debe de haber tan solo un jugador
  que pueda jugar como base.
 
-
 \item Propiedades:\\
-\begin{math}
- x_i
-\end{math}
-- Jugador i\\
-\begin{math}
-VC_i
-\end{math}
-- Valor de los tiros cortos del jugador i\\
-\begin{math}
-VL_i
-\end{math}
-- Valor de los tiros largos del jugador i\\
- \begin{math}
-CA_i
- \end{math}
- - Cache del jugador\\
- \begin{math}
-JisBASE_i
- \end{math}
- - Indicador de posicion de base para el jugador i\\
- \begin{math}
-JisPIV_i
- \end{math}
- - Indicador de posicion de pivot para el jugador i\\
- \begin{math}
-JisALE_i
- \end{math}
- - Indicador de posicion de alero para el jugador i\\
+$ x_i $ - Jugador i\\
+$VC_i$ - Valor de los tiros cortos del jugador i\\
+$ VL_i $ - Valor de los tiros largos del jugador i\\
+$ CA_i $ - Cache del jugador\\
+$ JisBASE_i $ - Indicador de posicion de base para el jugador i\\
+$ JisPIV_i $ - Indicador de posicion de pivot para el jugador i\\
+$ JisALE_i $ - Indicador de posicion de alero para el jugador i\\
 
 
  \item Restricciones:
 
- \begin{equation}
-  \sum_{i \in [0,N)}{x_i \, CA_i} \leq M
- \end{equation}
- La suma de los caches de los jugadores seleccionados no puede superar el presupuesto del entrenador.
-
-  \begin{equation}
-  \sum_{i \in [0,N)}{x_i} = S
- \end{equation}
- Debemos de seleccionar un numero S de jugadores de entre los disponibles.
-
- \begin{equation}
-  \sum_{i \in [0,N)}{x_i \, JisBASE_i} = 1
- \end{equation}
- Se debe de seleccionar un jugador que pueda jugar como base.
-
+La suma de los caches de los jugadores seleccionados no puede superar el presupuesto del entrenador.
 \begin{equation}
-  \sum_{i \in [0,N)}{x_i \, JisALE_i} \geq 3
- \end{equation}
- Se deben de seleccionar al menos 3 aleros
+\sum_{i \in [0,N)}{x_i \, CA_i} \leq M
+\end{equation}
 
+Debemos de seleccionar un numero S de jugadores de entre los disponibles.
 \begin{equation}
-  \sum_{i \in [0,N)}{x_i \, JisPIV_i} \geq 2
- \end{equation}
- Se deben de seleccionar al menos 2 pivots\\
+\sum_{i \in [0,N)}{x_i} = S
+\end{equation}
+
+Se debe de seleccionar un jugador que pueda jugar como base.
+\begin{equation}
+\sum_{i \in [0,N)}{x_i \, JisBASE_i} = 1
+\end{equation}
+
+Se deben de seleccionar al menos 3 aleros
+\begin{equation}
+\sum_{i \in [0,N)}{x_i \, JisALE_i} \geq 3
+\end{equation}
+
+Se deben de seleccionar al menos 2 pivots\\
+\begin{equation}
+\sum_{i \in [0,N)}{x_i \, JisPIV_i} \geq 2
+\end{equation}
 
 
- \item Solución óptima:\\
-
+\item Solución óptima:\\
 \begin{equation*}
-max  \sum_{i \in [0,N)}{x_i \, VC_i}+\sum_{i \in [0,N)}{x_i \, VL_i}
+max  \sum_{i \in [0,N)}{x_i \, VC_i}+\sum_{i \in [0,N)}{x_i \, VL_i}\\
 \end{equation*}
 
-
 \end{itemize}
-
 
 %--------------------Programación lineal-------------------%
 \section{Resolver el problema por Programacion lineal o Programacion linea entera, para ello:}
 
 \subsection{Indique razonadamente si es adecuado usar PL o PLI}
-
 Dado que estamos tratando con datos que son números enteros, podemos afirmar que el uso de PLI
 es el adecuado. De hecho, si usasemos PL sería posible que obteniesemos soluciones no válidas,
 como por ejemplo que sólo se seleccione la mitad de un jugador.
@@ -123,34 +98,13 @@ M - Integer - Presupuesto\\
 S - Integer - Numero de jugadores que hay que seleccionar\\
 LJ - List\textless Jugador\textgreater - Lista de jugadores disponibles\\
 \item Variables:\\
-\begin{math}
- x_i
-\end{math}
-- Jugador i\\
-\begin{math}
-VC_i
-\end{math}
-- Valor de los tiros cortos del jugador i\\
-\begin{math}
-VL_i
-\end{math}
-- Valor de los tiros largos del jugador i\\
- \begin{math}
-CA_i
- \end{math}
- - Cache del jugador\\
- \begin{math}
-JisBASE_i
- \end{math}
- - Indicador de posicion de base para el jugador i\\
- \begin{math}
-JisPIV_i
- \end{math}
- - Indicador de posicion de pivot para el jugador i\\
- \begin{math}
-JisALE_i
- \end{math}
- - Indicador de posicion de alero para el jugador i\\
+$ x_i $ - Jugador i\\
+$VC_i$ - Valor de los tiros cortos del jugador i\\
+$ VL_i $ - Valor de los tiros largos del jugador i\\
+$ CA_i $ - Cache del jugador\\
+$ JisBASE_i $ - Indicador de posicion de base para el jugador i\\
+$ JisPIV_i $ - Indicador de posicion de pivot para el jugador i\\
+$ JisALE_i $ - Indicador de posicion de alero para el jugador i\\
 
 \item Restricciones:\\
 \setcounter{equation}{0}
@@ -178,12 +132,11 @@ max  \sum_{i \in [0,N)}{x_i \, VC_i}+\sum_{i \in [0,N)}{x_i \, VL_i}
 
 \subsection{Genere un archivo denominado 'suplentes.txt' con los datos del escenario de entrada
 de forma similar a como se ha realizado en las clases de prácticas para otros problemas}
-Archivo con los datos iniciales del problema:
-
-\inputminted[fontsize=\footnotesize,breaklines]{text}{ficheros/suplentes.txt}
-
 Este archivo es un volcado directo de los datos presentados en el enunciado en formato CSV.
 Una vez se ejecute el programa estas lineas serán leidas y se creará una lista de jugadores que representan nuestro datos iniciales.
+
+\inputminted[breaklines]{text}{ficheros/suplentes.txt}
+
 \subsection{Desarolle un proyecto que resuelva el problema especificado por la técnica indicada.
 Tenga en cuenta que debe dar una implementación general que genere la solución requerida para
 cualquier problema de entrada, y no sólo para el escenario concreto que se proporciona en este enunciado.}
@@ -191,13 +144,16 @@ El código del proyecto se puede consultar en los anexos.
 
 \subsection{Dicho proyecto debe incluir un test de prueba que genere la solución para el escenario previamente descrito.
 Debe entregar tanto el archivo en formato LPSolve generado, como la solución obtenida para dicho escenario.}
-
+El test de prueba de programación lineal se encuentra en dentro de la clase ProblemaBaloncestoPLI. En esta clase se lee el
+archivo suplentes.txt, se crea un archivo LPSolve y finalmente se ejecuta.
 \begin{itemize}
   \item Archivo con formato LPsolve:
   \inputminted[fontsize=\footnotesize,breaklines]{text}{ficheros/ArchivoLPSolveGenerado.txt}
   \item Solucion obtenida:
   \inputminted[fontsize=\footnotesize,breaklines]{text}{ficheros/Solucion.txt}
-  En los anexos tambien existe una captura de pantalla.
+
+Como curiosidad, alterando el orden de las restriciones tambien obtenemos otros resultados, que son válidos, pero no son el mismo que se especifica en el enunciado.
+En los anexos se puede ver un volcado de pantalla de la solucion del enunciado
 
 \end{itemize}
 
@@ -215,7 +171,14 @@ se diesen soluciones no validas como por ejemplo que solo se seleccione la mitad
 \subsection{Complete la ficha de desecripción de la solucion mediante algoritmo genético.}
 
 \begin{itemize}
+  \item S:
   \item E: Integer
+  \item Propiedades Compartidas:\\
+  N - Integer - Número total de jugadores\\
+  M - Integer - Presupuesto\\
+  S - Integer - Número de jugadores que hay que seleccionar\\
+  LJ - List\textless Jugador\textgreater - Lista de jugadores disponibles\\
+
   \item Tipo de cromosoma: Binario
   \item Decode:
   \begin{itemize}
@@ -226,19 +189,28 @@ se diesen soluciones no validas como por ejemplo que solo se seleccione la mitad
   \item Fitness: $V - r^2 \,k$
   \begin{itemize}
     \item V: $\sum_{i / d_i == 1}{(VC_i + VL_i)}$
-    \item r = $\sum{r_i}$
-    %presupuesto
+    \item r = $\sum_{0}^{4}{r_i}$
+
+    %Numero de jugadores
+    \item $r_0 =
+    \begin{cases}
+      k &\mbox{si } \sum{d_i} \neq S\\
+      0 &\mbox{e.c.o.c }
+    \end{cases}
+    $
+
+    %Presupuesto
     \item $r_1 =
       \begin{cases}
-        k &\mbox{si } \sum_{i / d_i == 1}{d_i.cache} > M\\
+        \sum{d_i*d_i.getCache()} &\mbox{si } \sum{d_i*d_i.getCache()} > M\\
         0 &\mbox{e.c.o.c }
       \end{cases}
       $
 
-    %Solo un base
+    %Base
     \item $r_2 =
       \begin{cases}
-      k &\mbox{si } \sum_{i / d_i.getPos1 == 'Base'| d_i.getPos2 == 'Base'}{d_i} \neq 1
+      \sum_{i / d_i.getPos1()|d_i.getPos2()=="Base"}{d_i}  &\mbox{si } \sum_{i / d_i.getPos1()|d_i.getPos2()=="Base"}{d_i} \neq 1
       \\
       0 &\mbox{e.c.o.c}
       \end{cases}
@@ -247,35 +219,41 @@ se diesen soluciones no validas como por ejemplo que solo se seleccione la mitad
     %Aleros
     \item $r_3 =
     \begin{cases}
-    k &\mbox{si } \sum_{i / d_i.getPos1 == 'Alero'| d_i.getPos2 == 'Alero'}{d_i} < 2
-    \\
-    0 &\mbox{e.c.o.c}
-    \end{cases}
-    $
-    %Pivots
-    \item $r_4 =
-    \begin{cases}
-    k &\mbox{si } \sum_{i / d_i.getPos1 == 'Pivot'| d_i.getPos2 == 'Pivot'}{d_i} < 3
+    \sum_{i / d_i.getPos1()|d_i.getPos2()=="Alero"}{d_i}  &\mbox{si } \sum_{i / d_i.getPos1()|d_i.getPos2()=="Alero"}{d_i} < 2
     \\
     0 &\mbox{e.c.o.c}
     \end{cases}
     $
 
-    \item k: 200 - Valor grande
+    %Pivots
+    \item $r_4 =
+    \begin{cases}
+    \sum_{i / d_i.getPos1()|d_i.getPos2()=="Pivot"}{d_i} &\mbox{si } \sum_{i / d_i.getPos1()|d_i.getPos2()=="Pivot"}{d_i} < 3
+    \\
+    0 &\mbox{e.c.o.c}
+    \end{cases}
+    $
+
+    \item k: $10*TAMjugadores$ - Teniendo en cuenta que el maximo del valor de los
+    tiros puede es 5 (10 al ser largos y cortos).
   \end{itemize}
   \item: Solucion:
   \begin{itemize}
-    \item List\textless String\textgreater s = new ArrayList\textless String\textgreater()
-    \item range(0,S).foreach(i -> s.add(jugadores.get(i).getNombre()))
+    \item List\textless String\textgreater s = new ArrayList\textless String\textgreater();
+    \item range(0,S).foreach(i -> s.add(jugadores.get(i).getNombre()));
   \end{itemize}
 \end{itemize}
 
 
 
 \subsection{Desarrolle un proyecto que resuelva el problema especificado por la tecnica indicada. Tenga en cuenta que debe dar una implementación general que genere la ssilucion requerida para cualquier problema de entrada, y no solo para el escenario concreto que se proporciona en este enunciado.}
-Al igual que con la parte de PLI, es posible consultar el código en el anexo.
+Al igual que con la parte de PLI, es posible consultar el código completo en el anexo. La solución al problema con algoritmo genético seran las clases ProblemaBaloncestoAG.java y TestAG.java, en la primera se construye el tipo y en la segunda se testea sobre el ejemplo propuesto en el enunciado.
 \subsection{Complete el test de prueba e indique qué solucion obtiene para el problema propuesto en el enunciado. Los datos del problema se facilitan en el fichero "suplentes.txt".}
-
+Debido a que el algoritmo genético es un algoritmo de aproximación, es posible que al ejecutarlo
+se den resultados que no sean óptimos o, en nuestro caso, exactamente el mismo que vemos en el ejemplo.
+Sin embargo, en las pruebas realizadas se ha conseguido asegurar la solución del enunciado al utilizar
+un tamaño de poblacion de 10000 y 500 generaciones en el 75\% de las ocasiones.\\
+En el anexo se puede ver el volcado de pantalla de la solución obtenida al ejecutar la clase TestAG
 \section{Anexos}
 \subsection{Codigo completo}
 \subsubsection{Clase MetodosAuxiliares}
@@ -295,17 +273,40 @@ Al igual que con la parte de PLI, es posible consultar el código en el anexo.
 
 \subsection{Volcado de pantalla de los resultados obtenidos por cada prueba realizada}
 
-\begin{figure}[h]
+\begin{figure}[H]
+  \centering
   \includegraphics{AlgoritmoPLI.PNG}
   \caption{Volcado de pantalla de la terminal al ejecutar la clase ProblemaBaloncestoPLI}
   \label{fig:pli}
 \end{figure}
 
-\begin{figure}[h]
-  %TODO: Cambiar
-  \includegraphics{AlgoritmoPLI.PNG}
-  \caption{Volcado de pantalla de la terminal al ejecutar la clase ProblemaBaloncestoAC}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.75]{TestAG.PNG}
+  \caption{Volcado de pantalla de la terminal al ejecutar la clase TestAG}
   \label{fig:ag}
 \end{figure}
+
+\subsection{Código fuente y licencia}
+Todo el código fuente del trabajo se podrá encontrar en \url{www.github.com/Andalu30/US-ADDA-PracticaIndividual1/}
+a partir del lunes 9 de abril de 2018, fecha limite de entrega de este trabajo.
+No se recomienda el uso de la totalidad o de parte de este trabajo en caso de que no se cambie la actividad en años posteriores debido a que la universidad usa software de detección de copias.
+El contenido de este trabajo es libre y se encuentra licenciado bajo una licencia GPL v3.\\
+
+\begin{minted}{text}
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+\end{minted}
 
 \end{document}
