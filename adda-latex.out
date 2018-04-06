@@ -1,0 +1,21 @@
+\BOOKMARK [1][-]{section.1}{Complete la ficha de descripción del problema}{}% 1
+\BOOKMARK [1][-]{section.2}{Resolver el problema por Programacion lineal o Programacion linea entera, para ello:}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Indique razonadamente si es adecuado usar PL o PLI}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Completar la ficha de descripción de la solucion mediante la programación lineal. Justifique porque ha incluido cada variable y cada restricción.}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Genere un archivo denominado 'suplentes.txt' con los datos del escenario de entrada de forma similar a como se ha realizado en las clases de prácticas para otros problemas}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{Desarolle un proyecto que resuelva el problema especificado por la técnica indicada. Tenga en cuenta que debe dar una implementación general que genere la solución requerida para cualquier problema de entrada, y no sólo para el escenario concreto que se proporciona en este enunciado.}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.5}{Dicho proyecto debe incluir un test de prueba que genere la solución para el escenario previamente descrito. Debe entregar tanto el archivo en formato LPSolve generado, como la solución obtenida para dicho escenario.}{section.2}% 7
+\BOOKMARK [1][-]{section.3}{Resolver el problema mediante algoritmo genético, para ello:}{}% 8
+\BOOKMARK [2][-]{subsection.3.1}{¿Qué tipo o tipos de cromosomas son los más adecuados para resolver el problema y por qué?}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.2}{Complete la ficha de desecripción de la solucion mediante algoritmo genético.}{section.3}% 10
+\BOOKMARK [2][-]{subsection.3.3}{Desarrolle un proyecto que resuelva el problema especificado por la tecnica indicada. Tenga en cuenta que debe dar una implementación general que genere la ssilucion requerida para cualquier problema de entrada, y no solo para el escenario concreto que se proporciona en este enunciado.}{section.3}% 11
+\BOOKMARK [2][-]{subsection.3.4}{Complete el test de prueba e indique qué solucion obtiene para el problema propuesto en el enunciado. Los datos del problema se facilitan en el fichero "suplentes.txt".}{section.3}% 12
+\BOOKMARK [1][-]{section.4}{Anexos}{}% 13
+\BOOKMARK [2][-]{subsection.4.1}{Codigo completo}{section.4}% 14
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Clase MetodosAuxiliares}{subsection.4.1}% 15
+\BOOKMARK [3][-]{subsubsection.4.1.2}{Clase Jugador}{subsection.4.1}% 16
+\BOOKMARK [3][-]{subsubsection.4.1.3}{Clase ProblemaBaloncestoPLI}{subsection.4.1}% 17
+\BOOKMARK [3][-]{subsubsection.4.1.4}{Clase ProblemaBaloncestoAG}{subsection.4.1}% 18
+\BOOKMARK [3][-]{subsubsection.4.1.5}{Clase TestAG}{subsection.4.1}% 19
+\BOOKMARK [2][-]{subsection.4.2}{Volcado de pantalla de los resultados obtenidos por cada prueba realizada}{section.4}% 20
+\BOOKMARK [2][-]{subsection.4.3}{Código fuente y licencia}{section.4}% 21

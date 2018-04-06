@@ -1,0 +1,166 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{ * @author Juan Arteaga Carmona (juan.arteaga41567@gmail.com) \PYGZhy{} US: juaartcar}
+\PYG{c+cm}{ */}
+
+\PYG{k+kn}{package} \PYG{n+nn}{andalu30.PracticaIndividual1}\PYG{o}{;}
+
+\PYG{k+kd}{public} \PYG{k+kd}{class} \PYG{n+nc}{Jugador} \PYG{o}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{id}\PYG{o}{;}
+	\PYG{n}{String} \PYG{n}{nombre}\PYG{o}{;}
+	\PYG{n}{String} \PYG{n}{pos1}\PYG{o}{;}
+	\PYG{n}{String} \PYG{n}{pos2}\PYG{o}{;}
+	\PYG{k+kt}{int} \PYG{n}{cache}\PYG{o}{;}
+	\PYG{n}{String} \PYG{n}{nacion}\PYG{o}{;}
+	\PYG{k+kt}{int} \PYG{n}{minJugados}\PYG{o}{;}
+	\PYG{k+kt}{int} \PYG{n}{valorCortos}\PYG{o}{;}
+	\PYG{k+kt}{int} \PYG{n}{valorLargos}\PYG{o}{;}
+	
+	
+	
+	\PYG{k+kd}{public} \PYG{n+nf}{Jugador}\PYG{o}{(}\PYG{k+kt}{int} \PYG{n}{id}\PYG{o}{,} \PYG{n}{String} \PYG{n}{nombre}\PYG{o}{,} \PYG{n}{String} \PYG{n}{pos1}\PYG{o}{,} \PYG{n}{String} \PYG{n}{pos2}\PYG{o}{,} \PYG{k+kt}{int} \PYG{n}{cache}\PYG{o}{,} \PYG{n}{String} \PYG{n}{nacion}\PYG{o}{,} \PYG{k+kt}{int} \PYG{n}{minJugados}\PYG{o}{,}
+			\PYG{k+kt}{int} \PYG{n}{valorCortos}\PYG{o}{,} \PYG{k+kt}{int} \PYG{n}{valorLargos}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+		\PYG{k+kd}{super}\PYG{o}{();}
+		\PYG{k}{this}\PYG{o}{.}\PYG{n+na}{id} \PYG{o}{=} \PYG{n}{id}\PYG{o}{;}
+		\PYG{k}{this}\PYG{o}{.}\PYG{n+na}{nombre} \PYG{o}{=} \PYG{n}{nombre}\PYG{o}{;}
+		\PYG{k}{this}\PYG{o}{.}\PYG{n+na}{pos1} \PYG{o}{=} \PYG{n}{pos1}\PYG{o}{;}
+		\PYG{k}{this}\PYG{o}{.}\PYG{n+na}{pos2} \PYG{o}{=} \PYG{n}{pos2}\PYG{o}{;}
+		\PYG{k}{this}\PYG{o}{.}\PYG{n+na}{cache} \PYG{o}{=} \PYG{n}{cache}\PYG{o}{;}
+		\PYG{k}{this}\PYG{o}{.}\PYG{n+na}{nacion} \PYG{o}{=} \PYG{n}{nacion}\PYG{o}{;}
+		\PYG{k}{this}\PYG{o}{.}\PYG{n+na}{minJugados} \PYG{o}{=} \PYG{n}{minJugados}\PYG{o}{;}
+		\PYG{k}{this}\PYG{o}{.}\PYG{n+na}{valorCortos} \PYG{o}{=} \PYG{n}{valorCortos}\PYG{o}{;}
+		\PYG{k}{this}\PYG{o}{.}\PYG{n+na}{valorLargos} \PYG{o}{=} \PYG{n}{valorLargos}\PYG{o}{;}
+	\PYG{o}{\PYGZcb{}}
+
+
+
+	\PYG{k+kd}{public} \PYG{k+kt}{int} \PYG{n+nf}{getId}\PYG{o}{()} \PYG{o}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{id}\PYG{o}{;}
+	\PYG{o}{\PYGZcb{}}
+
+
+
+	\PYG{k+kd}{public} \PYG{n}{String} \PYG{n+nf}{getNombre}\PYG{o}{()} \PYG{o}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{nombre}\PYG{o}{;}
+	\PYG{o}{\PYGZcb{}}
+
+
+
+	\PYG{k+kd}{public} \PYG{n}{String} \PYG{n+nf}{getPos1}\PYG{o}{()} \PYG{o}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{pos1}\PYG{o}{;}
+	\PYG{o}{\PYGZcb{}}
+
+
+
+	\PYG{k+kd}{public} \PYG{n}{String} \PYG{n+nf}{getPos2}\PYG{o}{()} \PYG{o}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{pos2}\PYG{o}{;}
+	\PYG{o}{\PYGZcb{}}
+
+
+
+	\PYG{k+kd}{public} \PYG{k+kt}{int} \PYG{n+nf}{getCache}\PYG{o}{()} \PYG{o}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{cache}\PYG{o}{;}
+	\PYG{o}{\PYGZcb{}}
+
+
+
+	\PYG{k+kd}{public} \PYG{n}{String} \PYG{n+nf}{getNacion}\PYG{o}{()} \PYG{o}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{nacion}\PYG{o}{;}
+	\PYG{o}{\PYGZcb{}}
+
+
+
+	\PYG{k+kd}{public} \PYG{k+kt}{int} \PYG{n+nf}{getMinJugados}\PYG{o}{()} \PYG{o}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{minJugados}\PYG{o}{;}
+	\PYG{o}{\PYGZcb{}}
+
+
+
+	\PYG{k+kd}{public} \PYG{k+kt}{int} \PYG{n+nf}{getValorCortos}\PYG{o}{()} \PYG{o}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{valorCortos}\PYG{o}{;}
+	\PYG{o}{\PYGZcb{}}
+
+
+
+	\PYG{k+kd}{public} \PYG{k+kt}{int} \PYG{n+nf}{getValorLargos}\PYG{o}{()} \PYG{o}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{valorLargos}\PYG{o}{;}
+	\PYG{o}{\PYGZcb{}}
+
+
+
+	\PYG{n+nd}{@Override}
+	\PYG{k+kd}{public} \PYG{k+kt}{int} \PYG{n+nf}{hashCode}\PYG{o}{()} \PYG{o}{\PYGZob{}}
+		\PYG{k+kd}{final} \PYG{k+kt}{int} \PYG{n}{prime} \PYG{o}{=} \PYG{l+m+mi}{31}\PYG{o}{;}
+		\PYG{k+kt}{int} \PYG{n}{result} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{o}{;}
+		\PYG{n}{result} \PYG{o}{=} \PYG{n}{prime} \PYG{o}{*} \PYG{n}{result} \PYG{o}{+} \PYG{n}{cache}\PYG{o}{;}
+		\PYG{n}{result} \PYG{o}{=} \PYG{n}{prime} \PYG{o}{*} \PYG{n}{result} \PYG{o}{+} \PYG{n}{id}\PYG{o}{;}
+		\PYG{n}{result} \PYG{o}{=} \PYG{n}{prime} \PYG{o}{*} \PYG{n}{result} \PYG{o}{+} \PYG{n}{minJugados}\PYG{o}{;}
+		\PYG{n}{result} \PYG{o}{=} \PYG{n}{prime} \PYG{o}{*} \PYG{n}{result} \PYG{o}{+} \PYG{o}{((}\PYG{n}{nacion} \PYG{o}{==} \PYG{k+kc}{null}\PYG{o}{)} \PYG{o}{?} \PYG{l+m+mi}{0} \PYG{o}{:} \PYG{n}{nacion}\PYG{o}{.}\PYG{n+na}{hashCode}\PYG{o}{());}
+		\PYG{n}{result} \PYG{o}{=} \PYG{n}{prime} \PYG{o}{*} \PYG{n}{result} \PYG{o}{+} \PYG{o}{((}\PYG{n}{nombre} \PYG{o}{==} \PYG{k+kc}{null}\PYG{o}{)} \PYG{o}{?} \PYG{l+m+mi}{0} \PYG{o}{:} \PYG{n}{nombre}\PYG{o}{.}\PYG{n+na}{hashCode}\PYG{o}{());}
+		\PYG{n}{result} \PYG{o}{=} \PYG{n}{prime} \PYG{o}{*} \PYG{n}{result} \PYG{o}{+} \PYG{o}{((}\PYG{n}{pos1} \PYG{o}{==} \PYG{k+kc}{null}\PYG{o}{)} \PYG{o}{?} \PYG{l+m+mi}{0} \PYG{o}{:} \PYG{n}{pos1}\PYG{o}{.}\PYG{n+na}{hashCode}\PYG{o}{());}
+		\PYG{n}{result} \PYG{o}{=} \PYG{n}{prime} \PYG{o}{*} \PYG{n}{result} \PYG{o}{+} \PYG{o}{((}\PYG{n}{pos2} \PYG{o}{==} \PYG{k+kc}{null}\PYG{o}{)} \PYG{o}{?} \PYG{l+m+mi}{0} \PYG{o}{:} \PYG{n}{pos2}\PYG{o}{.}\PYG{n+na}{hashCode}\PYG{o}{());}
+		\PYG{n}{result} \PYG{o}{=} \PYG{n}{prime} \PYG{o}{*} \PYG{n}{result} \PYG{o}{+} \PYG{n}{valorCortos}\PYG{o}{;}
+		\PYG{n}{result} \PYG{o}{=} \PYG{n}{prime} \PYG{o}{*} \PYG{n}{result} \PYG{o}{+} \PYG{n}{valorLargos}\PYG{o}{;}
+		\PYG{k}{return} \PYG{n}{result}\PYG{o}{;}
+	\PYG{o}{\PYGZcb{}}
+
+
+
+	\PYG{n+nd}{@Override}
+	\PYG{k+kd}{public} \PYG{k+kt}{boolean} \PYG{n+nf}{equals}\PYG{o}{(}\PYG{n}{Object} \PYG{n}{obj}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+		\PYG{k}{if} \PYG{o}{(}\PYG{k}{this} \PYG{o}{==} \PYG{n}{obj}\PYG{o}{)}
+			\PYG{k}{return} \PYG{k+kc}{true}\PYG{o}{;}
+		\PYG{k}{if} \PYG{o}{(}\PYG{n}{obj} \PYG{o}{==} \PYG{k+kc}{null}\PYG{o}{)}
+			\PYG{k}{return} \PYG{k+kc}{false}\PYG{o}{;}
+		\PYG{k}{if} \PYG{o}{(}\PYG{n}{getClass}\PYG{o}{()} \PYG{o}{!=} \PYG{n}{obj}\PYG{o}{.}\PYG{n+na}{getClass}\PYG{o}{())}
+			\PYG{k}{return} \PYG{k+kc}{false}\PYG{o}{;}
+		\PYG{n}{Jugador} \PYG{n}{other} \PYG{o}{=} \PYG{o}{(}\PYG{n}{Jugador}\PYG{o}{)} \PYG{n}{obj}\PYG{o}{;}
+		\PYG{k}{if} \PYG{o}{(}\PYG{n}{cache} \PYG{o}{!=} \PYG{n}{other}\PYG{o}{.}\PYG{n+na}{cache}\PYG{o}{)}
+			\PYG{k}{return} \PYG{k+kc}{false}\PYG{o}{;}
+		\PYG{k}{if} \PYG{o}{(}\PYG{n}{id} \PYG{o}{!=} \PYG{n}{other}\PYG{o}{.}\PYG{n+na}{id}\PYG{o}{)}
+			\PYG{k}{return} \PYG{k+kc}{false}\PYG{o}{;}
+		\PYG{k}{if} \PYG{o}{(}\PYG{n}{minJugados} \PYG{o}{!=} \PYG{n}{other}\PYG{o}{.}\PYG{n+na}{minJugados}\PYG{o}{)}
+			\PYG{k}{return} \PYG{k+kc}{false}\PYG{o}{;}
+		\PYG{k}{if} \PYG{o}{(}\PYG{n}{nacion} \PYG{o}{==} \PYG{k+kc}{null}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+			\PYG{k}{if} \PYG{o}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n+na}{nacion} \PYG{o}{!=} \PYG{k+kc}{null}\PYG{o}{)}
+				\PYG{k}{return} \PYG{k+kc}{false}\PYG{o}{;}
+		\PYG{o}{\PYGZcb{}} \PYG{k}{else} \PYG{k}{if} \PYG{o}{(!}\PYG{n}{nacion}\PYG{o}{.}\PYG{n+na}{equals}\PYG{o}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n+na}{nacion}\PYG{o}{))}
+			\PYG{k}{return} \PYG{k+kc}{false}\PYG{o}{;}
+		\PYG{k}{if} \PYG{o}{(}\PYG{n}{nombre} \PYG{o}{==} \PYG{k+kc}{null}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+			\PYG{k}{if} \PYG{o}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n+na}{nombre} \PYG{o}{!=} \PYG{k+kc}{null}\PYG{o}{)}
+				\PYG{k}{return} \PYG{k+kc}{false}\PYG{o}{;}
+		\PYG{o}{\PYGZcb{}} \PYG{k}{else} \PYG{k}{if} \PYG{o}{(!}\PYG{n}{nombre}\PYG{o}{.}\PYG{n+na}{equals}\PYG{o}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n+na}{nombre}\PYG{o}{))}
+			\PYG{k}{return} \PYG{k+kc}{false}\PYG{o}{;}
+		\PYG{k}{if} \PYG{o}{(}\PYG{n}{pos1} \PYG{o}{==} \PYG{k+kc}{null}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+			\PYG{k}{if} \PYG{o}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n+na}{pos1} \PYG{o}{!=} \PYG{k+kc}{null}\PYG{o}{)}
+				\PYG{k}{return} \PYG{k+kc}{false}\PYG{o}{;}
+		\PYG{o}{\PYGZcb{}} \PYG{k}{else} \PYG{k}{if} \PYG{o}{(!}\PYG{n}{pos1}\PYG{o}{.}\PYG{n+na}{equals}\PYG{o}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n+na}{pos1}\PYG{o}{))}
+			\PYG{k}{return} \PYG{k+kc}{false}\PYG{o}{;}
+		\PYG{k}{if} \PYG{o}{(}\PYG{n}{pos2} \PYG{o}{==} \PYG{k+kc}{null}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+			\PYG{k}{if} \PYG{o}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n+na}{pos2} \PYG{o}{!=} \PYG{k+kc}{null}\PYG{o}{)}
+				\PYG{k}{return} \PYG{k+kc}{false}\PYG{o}{;}
+		\PYG{o}{\PYGZcb{}} \PYG{k}{else} \PYG{k}{if} \PYG{o}{(!}\PYG{n}{pos2}\PYG{o}{.}\PYG{n+na}{equals}\PYG{o}{(}\PYG{n}{other}\PYG{o}{.}\PYG{n+na}{pos2}\PYG{o}{))}
+			\PYG{k}{return} \PYG{k+kc}{false}\PYG{o}{;}
+		\PYG{k}{if} \PYG{o}{(}\PYG{n}{valorCortos} \PYG{o}{!=} \PYG{n}{other}\PYG{o}{.}\PYG{n+na}{valorCortos}\PYG{o}{)}
+			\PYG{k}{return} \PYG{k+kc}{false}\PYG{o}{;}
+		\PYG{k}{if} \PYG{o}{(}\PYG{n}{valorLargos} \PYG{o}{!=} \PYG{n}{other}\PYG{o}{.}\PYG{n+na}{valorLargos}\PYG{o}{)}
+			\PYG{k}{return} \PYG{k+kc}{false}\PYG{o}{;}
+		\PYG{k}{return} \PYG{k+kc}{true}\PYG{o}{;}
+	\PYG{o}{\PYGZcb{}}
+
+
+
+	\PYG{n+nd}{@Override}
+	\PYG{k+kd}{public} \PYG{n}{String} \PYG{n+nf}{toString}\PYG{o}{()} \PYG{o}{\PYGZob{}}
+		\PYG{k}{return} \PYG{l+s}{\PYGZdq{}Jugador [id=\PYGZdq{}} \PYG{o}{+} \PYG{n}{id} \PYG{o}{+} \PYG{l+s}{\PYGZdq{}, nombre=\PYGZdq{}} \PYG{o}{+} \PYG{n}{nombre} \PYG{o}{+} \PYG{l+s}{\PYGZdq{}, pos1=\PYGZdq{}} \PYG{o}{+} \PYG{n}{pos1} \PYG{o}{+} \PYG{l+s}{\PYGZdq{}, pos2=\PYGZdq{}} \PYG{o}{+} \PYG{n}{pos2} \PYG{o}{+} \PYG{l+s}{\PYGZdq{}, cache=\PYGZdq{}} \PYG{o}{+} \PYG{n}{cache}
+				\PYG{o}{+} \PYG{l+s}{\PYGZdq{}, nacion=\PYGZdq{}} \PYG{o}{+} \PYG{n}{nacion} \PYG{o}{+} \PYG{l+s}{\PYGZdq{}, minJugados=\PYGZdq{}} \PYG{o}{+} \PYG{n}{minJugados} \PYG{o}{+} \PYG{l+s}{\PYGZdq{}, valorCortos=\PYGZdq{}} \PYG{o}{+} \PYG{n}{valorCortos}
+				\PYG{o}{+} \PYG{l+s}{\PYGZdq{}, valorLargos=\PYGZdq{}} \PYG{o}{+} \PYG{n}{valorLargos} \PYG{o}{+} \PYG{l+s}{\PYGZdq{}]\PYGZbs{}n\PYGZdq{}}\PYG{o}{;}
+	\PYG{o}{\PYGZcb{}}
+	
+	
+	
+	
+	
+	
+\PYG{o}{\PYGZcb{}}
+\end{Verbatim}

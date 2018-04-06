@@ -1,0 +1,128 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{ * @author Juan Arteaga Carmona (juan.arteaga41567@gmail.com) \PYGZhy{} US: juaartcar}
+\PYG{c+cm}{ */}
+
+\PYG{k+kn}{package} \PYG{n+nn}{andalu30.PracticaIndividual1}\PYG{o}{;}
+
+\PYG{k+kn}{import} \PYG{n+nn}{java.io.PrintWriter}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{java.util.ArrayList}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{java.util.List}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{us.lsi.algoritmos.Algoritmos}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{us.lsi.pl.AlgoritmoPLI}\PYG{o}{;}
+
+\PYG{k+kd}{public} \PYG{k+kd}{class} \PYG{n+nc}{ProblemaBaloncestoPLI} \PYG{o}{\PYGZob{}}
+
+	\PYG{k+kd}{public} \PYG{k+kd}{static} \PYG{k+kt}{void} \PYG{n+nf}{main}\PYG{o}{(}\PYG{n}{String}\PYG{o}{[]} \PYG{n}{args}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+
+		\PYG{n}{Integer} \PYG{n}{presupuesto} \PYG{o}{=} \PYG{l+m+mi}{10}\PYG{o}{;}
+		\PYG{n}{Integer} \PYG{n}{seleccionarJugadores} \PYG{o}{=} \PYG{l+m+mi}{7}\PYG{o}{;}
+
+		\PYG{n}{List}\PYG{o}{\PYGZlt{}}\PYG{n}{Jugador}\PYG{o}{\PYGZgt{}} \PYG{n}{jugadores} \PYG{o}{=} \PYG{n}{MetodosAuxiliares}\PYG{o}{.}\PYG{n+na}{getJugadoresDesdeArchivo}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}ficheros/suplentes.txt\PYGZdq{}}\PYG{o}{);}
+
+		\PYG{c+c1}{//Inicializacion de la string}
+		\PYG{n}{String} \PYG{n}{r} \PYG{o}{=} \PYG{l+s}{\PYGZdq{}\PYGZdq{}}\PYG{o}{;}
+		\PYG{n}{r} \PYG{o}{=} \PYG{n}{r}\PYG{o}{+}\PYG{l+s}{\PYGZdq{}max: \PYGZdq{}}\PYG{o}{;}
+
+		\PYG{c+c1}{//Funcion objetivo. Variables y pesos}
+		\PYG{k}{for}\PYG{o}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=}\PYG{l+m+mi}{0}\PYG{o}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{size}\PYG{o}{();}\PYG{n}{i}\PYG{o}{++)\PYGZob{}}
+			\PYG{k}{if} \PYG{o}{(}\PYG{n}{i}\PYG{o}{!=}\PYG{l+m+mi}{0}\PYG{o}{)} \PYG{n}{r} \PYG{o}{+=}\PYG{l+s}{\PYGZdq{} + \PYGZdq{}}\PYG{o}{;}
+			\PYG{n}{r} \PYG{o}{+=} \PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{get}\PYG{o}{(}\PYG{n}{i}\PYG{o}{).}\PYG{n+na}{getValorCortos}\PYG{o}{()+}\PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{get}\PYG{o}{(}\PYG{n}{i}\PYG{o}{).}\PYG{n+na}{getValorLargos}\PYG{o}{()} \PYG{o}{+} \PYG{l+s}{\PYGZdq{}*x\PYGZdq{}}\PYG{o}{+}\PYG{n}{i}\PYG{o}{;}
+		\PYG{o}{\PYGZcb{}}
+		\PYG{n}{r} \PYG{o}{+=} \PYG{l+s}{\PYGZdq{};\PYGZbs{}n\PYGZbs{}n\PYGZdq{}}\PYG{o}{;}
+
+		\PYG{c+c1}{//Restricciones.}
+		\PYG{c+c1}{//Suma de cache\PYGZlt{}= presupuesto}
+				\PYG{k}{for} \PYG{o}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{o}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{size}\PYG{o}{();} \PYG{n}{i}\PYG{o}{++)} \PYG{o}{\PYGZob{}}
+					\PYG{k}{if} \PYG{o}{(}\PYG{n}{i}\PYG{o}{!=}\PYG{l+m+mi}{0}\PYG{o}{)} \PYG{n}{r} \PYG{o}{=} \PYG{n}{r}\PYG{o}{+}\PYG{l+s}{\PYGZdq{}+\PYGZdq{}}\PYG{o}{;}
+					\PYG{n}{r} \PYG{o}{+=} \PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{get}\PYG{o}{(}\PYG{n}{i}\PYG{o}{).}\PYG{n+na}{getCache}\PYG{o}{()+}\PYG{l+s}{\PYGZdq{}*x\PYGZdq{}} \PYG{o}{+} \PYG{n}{i}\PYG{o}{;}
+				\PYG{o}{\PYGZcb{}}
+				\PYG{n}{r}\PYG{o}{+=} \PYG{l+s}{\PYGZdq{} \PYGZlt{}= \PYGZdq{}}\PYG{o}{+}\PYG{n}{presupuesto}\PYG{o}{+}\PYG{l+s}{\PYGZdq{};\PYGZbs{}n\PYGZdq{}}\PYG{o}{;}
+
+		\PYG{c+c1}{//Seleccionar solamente n jugadores}
+		\PYG{k}{for} \PYG{o}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{o}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{size}\PYG{o}{();} \PYG{n}{i}\PYG{o}{++)} \PYG{o}{\PYGZob{}}
+			\PYG{k}{if} \PYG{o}{(}\PYG{n}{i}\PYG{o}{!=}\PYG{l+m+mi}{0}\PYG{o}{)} \PYG{n}{r} \PYG{o}{=} \PYG{n}{r}\PYG{o}{+}\PYG{l+s}{\PYGZdq{}+\PYGZdq{}}\PYG{o}{;}
+			\PYG{n}{r} \PYG{o}{+=} \PYG{l+s}{\PYGZdq{}x\PYGZdq{}} \PYG{o}{+} \PYG{n}{i}\PYG{o}{;}
+		\PYG{o}{\PYGZcb{}}
+		\PYG{n}{r} \PYG{o}{+=} \PYG{l+s}{\PYGZdq{} = \PYGZdq{}}\PYG{o}{+}\PYG{n}{seleccionarJugadores}\PYG{o}{+}\PYG{l+s}{\PYGZdq{};\PYGZbs{}n\PYGZdq{}}\PYG{o}{;}
+
+		\PYG{c+c1}{//Solo un base}
+		\PYG{k}{for} \PYG{o}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{o}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{size}\PYG{o}{();} \PYG{n}{i}\PYG{o}{++)} \PYG{o}{\PYGZob{}}
+			\PYG{k}{if} \PYG{o}{(}\PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{get}\PYG{o}{(}\PYG{n}{i}\PYG{o}{).}\PYG{n+na}{getPos1}\PYG{o}{().}\PYG{n+na}{equals}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}Base\PYGZdq{}}\PYG{o}{)||} \PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{get}\PYG{o}{(}\PYG{n}{i}\PYG{o}{).}\PYG{n+na}{getPos2}\PYG{o}{().}\PYG{n+na}{equals}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}Base\PYGZdq{}}\PYG{o}{))} \PYG{o}{\PYGZob{}}
+				\PYG{n}{r} \PYG{o}{+=} \PYG{l+s}{\PYGZdq{}x\PYGZdq{}}\PYG{o}{+}\PYG{n}{i}\PYG{o}{+}\PYG{l+s}{\PYGZdq{}+\PYGZdq{}}\PYG{o}{;}
+			\PYG{o}{\PYGZcb{}}
+		\PYG{o}{\PYGZcb{}}
+		\PYG{n}{r} \PYG{o}{+=} \PYG{l+s}{\PYGZdq{}0 = 1;\PYGZbs{}n\PYGZdq{}}\PYG{o}{;}
+
+
+		\PYG{c+c1}{//Pivots}
+		\PYG{k}{for} \PYG{o}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{o}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{size}\PYG{o}{();} \PYG{n}{i}\PYG{o}{++)} \PYG{o}{\PYGZob{}}
+			\PYG{k}{if}\PYG{o}{(} \PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{get}\PYG{o}{(}\PYG{n}{i}\PYG{o}{).}\PYG{n+na}{getPos1}\PYG{o}{().}\PYG{n+na}{equals}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}Pivot\PYGZdq{}}\PYG{o}{)} \PYG{o}{||} \PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{get}\PYG{o}{(}\PYG{n}{i}\PYG{o}{).}\PYG{n+na}{getPos2}\PYG{o}{().}\PYG{n+na}{equals}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}Pivot\PYGZdq{}}\PYG{o}{))} \PYG{o}{\PYGZob{}}
+				\PYG{n}{r} \PYG{o}{+=} \PYG{l+s}{\PYGZdq{}x\PYGZdq{}}\PYG{o}{+}\PYG{n}{i}\PYG{o}{+}\PYG{l+s}{\PYGZdq{}+\PYGZdq{}}\PYG{o}{;}
+			\PYG{o}{\PYGZcb{}}
+		\PYG{o}{\PYGZcb{}}
+		\PYG{n}{r} \PYG{o}{+=} \PYG{l+s}{\PYGZdq{}0 \PYGZgt{}= 2;\PYGZbs{}n\PYGZdq{}}\PYG{o}{;}
+
+
+		\PYG{c+c1}{//Aleros}
+		\PYG{k}{for} \PYG{o}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{o}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{size}\PYG{o}{();} \PYG{n}{i}\PYG{o}{++)} \PYG{o}{\PYGZob{}}
+			\PYG{k}{if}\PYG{o}{(} \PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{get}\PYG{o}{(}\PYG{n}{i}\PYG{o}{).}\PYG{n+na}{getPos1}\PYG{o}{().}\PYG{n+na}{equals}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}Alero\PYGZdq{}}\PYG{o}{)} \PYG{o}{||} \PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{get}\PYG{o}{(}\PYG{n}{i}\PYG{o}{).}\PYG{n+na}{getPos2}\PYG{o}{().}\PYG{n+na}{equals}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}Alero\PYGZdq{}}\PYG{o}{))} \PYG{o}{\PYGZob{}}
+				\PYG{n}{r} \PYG{o}{+=} \PYG{l+s}{\PYGZdq{}x\PYGZdq{}}\PYG{o}{+}\PYG{n}{i}\PYG{o}{+}\PYG{l+s}{\PYGZdq{}+\PYGZdq{}}\PYG{o}{;}
+			\PYG{o}{\PYGZcb{}}
+		\PYG{o}{\PYGZcb{}}
+		\PYG{n}{r} \PYG{o}{+=} \PYG{l+s}{\PYGZdq{}0 \PYGZgt{}= 3;\PYGZbs{}n\PYGZbs{}nbin \PYGZdq{}}\PYG{o}{;}
+
+		\PYG{c+c1}{//Declaracion variables binarias}
+		\PYG{k}{for} \PYG{o}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{o}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{size}\PYG{o}{();} \PYG{n}{i}\PYG{o}{++)} \PYG{o}{\PYGZob{}}
+			\PYG{n}{r}\PYG{o}{+=}\PYG{l+s}{\PYGZdq{}x\PYGZdq{}}\PYG{o}{+}\PYG{n}{i}\PYG{o}{+}\PYG{l+s}{\PYGZdq{} \PYGZdq{}}\PYG{o}{;}
+		\PYG{o}{\PYGZcb{}}
+		\PYG{n}{r}\PYG{o}{+=}\PYG{l+s}{\PYGZdq{};\PYGZdq{}}\PYG{o}{;}
+		\PYG{c+c1}{//\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+		\PYG{c+c1}{//Guardar la string a un archivo}
+
+		\PYG{k}{try} \PYG{o}{\PYGZob{}}
+			\PYG{n}{PrintWriter} \PYG{n}{out} \PYG{o}{=} \PYG{k}{new} \PYG{n}{PrintWriter}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}ficheros/ArchivoLPSolveGenerado.txt\PYGZdq{}}\PYG{o}{);}
+			\PYG{n}{out}\PYG{o}{.}\PYG{n+na}{print}\PYG{o}{(}\PYG{n}{r}\PYG{o}{);}
+			\PYG{n}{out}\PYG{o}{.}\PYG{n+na}{close}\PYG{o}{();}
+		\PYG{o}{\PYGZcb{}} \PYG{k}{catch} \PYG{o}{(}\PYG{n}{Exception} \PYG{n}{e}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+			\PYG{n}{System}\PYG{o}{.}\PYG{n+na}{err}\PYG{o}{.}\PYG{n+na}{println}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}Se ha producido un error al guardar el archivo LPSolve generado. \PYGZdq{}}\PYG{o}{+}\PYG{n}{e}\PYG{o}{.}\PYG{n+na}{getMessage}\PYG{o}{()+}\PYG{l+s}{\PYGZdq{}\PYGZbs{}n A continuacion se imprime el texto generado que deberia de haber sido guardado en ese archivo.\PYGZbs{}n\PYGZdq{}}\PYG{o}{+}\PYG{n}{r}\PYG{o}{);}
+		\PYG{o}{\PYGZcb{}}
+
+
+\PYG{c+c1}{//\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+
+
+		\PYG{n}{AlgoritmoPLI} \PYG{n}{a} \PYG{o}{=} \PYG{n}{Algoritmos}\PYG{o}{.}\PYG{n+na}{createPLI}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}ficheros/ArchivoLPSolveGenerado.txt\PYGZdq{}}\PYG{o}{);}
+
+		\PYG{n}{List}\PYG{o}{\PYGZlt{}}\PYG{n}{String}\PYG{o}{\PYGZgt{}} \PYG{n}{NombresSolucion} \PYG{o}{=} \PYG{k}{new} \PYG{n}{ArrayList}\PYG{o}{\PYGZlt{}\PYGZgt{}();}
+
+		\PYG{n}{a}\PYG{o}{.}\PYG{n+na}{ejecuta}\PYG{o}{();}
+
+		\PYG{k+kt}{double}\PYG{o}{[]} \PYG{n}{solucion} \PYG{o}{=} \PYG{n}{a}\PYG{o}{.}\PYG{n+na}{getSolucion}\PYG{o}{();}
+		\PYG{k}{for} \PYG{o}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{o}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{n}{solucion}\PYG{o}{.}\PYG{n+na}{length}\PYG{o}{;}\PYG{n}{i}\PYG{o}{++)} \PYG{o}{\PYGZob{}}
+			\PYG{k}{if} \PYG{o}{(}\PYG{n}{solucion}\PYG{o}{[}\PYG{n}{i}\PYG{o}{]==}\PYG{l+m+mf}{1.}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+				\PYG{n}{NombresSolucion}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{get}\PYG{o}{(}\PYG{n}{i}\PYG{o}{).}\PYG{n+na}{getNombre}\PYG{o}{());}
+			\PYG{o}{\PYGZcb{}}
+		\PYG{o}{\PYGZcb{}}
+
+
+		\PYG{c+c1}{//Impresiones por pantalla:}
+		\PYG{n}{System}\PYG{o}{.}\PYG{n+na}{out}\PYG{o}{.}\PYG{n+na}{println}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}Se ha generado un archivo llamado \PYGZbs{}\PYGZdq{}ArchivoLPSolveGenerado.txt\PYGZbs{}\PYGZdq{} que contiene la definición de la solución del problema en formato LPSolve\PYGZdq{}}\PYG{o}{);}
+		\PYG{n}{System}\PYG{o}{.}\PYG{n+na}{out}\PYG{o}{.}\PYG{n+na}{println}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}Este es el archivo con formato LPSolve:\PYGZbs{}n\PYGZbs{}n\PYGZdq{}}\PYG{o}{+}\PYG{n}{r}\PYG{o}{);}
+		\PYG{n}{System}\PYG{o}{.}\PYG{n+na}{out}\PYG{o}{.}\PYG{n+na}{println}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}\PYGZbs{}n\PYGZbs{}nUna vez ejecutado, esta es la solución al problema (tambien se guardará en un archivo de texto):\PYGZdq{}}\PYG{o}{);}
+		\PYG{n}{System}\PYG{o}{.}\PYG{n+na}{out}\PYG{o}{.}\PYG{n+na}{println}\PYG{o}{(}\PYG{n}{NombresSolucion}\PYG{o}{);}
+
+
+		\PYG{k}{try} \PYG{o}{\PYGZob{}}
+			\PYG{n}{PrintWriter} \PYG{n}{out} \PYG{o}{=} \PYG{k}{new} \PYG{n}{PrintWriter}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}ficheros/Solucion.txt\PYGZdq{}}\PYG{o}{);}
+			\PYG{n}{out}\PYG{o}{.}\PYG{n+na}{print}\PYG{o}{(}\PYG{n}{NombresSolucion}\PYG{o}{);}
+			\PYG{n}{out}\PYG{o}{.}\PYG{n+na}{close}\PYG{o}{();}
+		\PYG{o}{\PYGZcb{}} \PYG{k}{catch} \PYG{o}{(}\PYG{n}{Exception} \PYG{n}{e}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+			\PYG{n}{System}\PYG{o}{.}\PYG{n+na}{err}\PYG{o}{.}\PYG{n+na}{println}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}Se ha producido un error al realizar la escritura de la solucion en un archivo. \PYGZdq{}}\PYG{o}{+}\PYG{n}{e}\PYG{o}{.}\PYG{n+na}{getMessage}\PYG{o}{()+}\PYG{l+s}{\PYGZdq{} Esta ha sido la solucion:\PYGZbs{}n\PYGZdq{}}\PYG{o}{+}\PYG{n}{NombresSolucion}\PYG{o}{);}
+		\PYG{o}{\PYGZcb{}}
+
+
+	\PYG{o}{\PYGZcb{}}
+
+\PYG{o}{\PYGZcb{}}
+\end{Verbatim}

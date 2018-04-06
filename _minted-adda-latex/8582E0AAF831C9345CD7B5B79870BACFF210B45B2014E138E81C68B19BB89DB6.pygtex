@@ -1,0 +1,40 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{ * @author Juan Arteaga Carmona (juan.arteaga41567@gmail.com) \PYGZhy{} US: juaartcar}
+\PYG{c+cm}{ */}
+
+\PYG{k+kn}{package} \PYG{n+nn}{andalu30.PracticaIndividual1}\PYG{o}{;}
+
+\PYG{k+kn}{import} \PYG{n+nn}{java.io.BufferedReader}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{java.io.File}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{java.io.FileReader}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{java.util.ArrayList}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{java.util.List}\PYG{o}{;}
+
+\PYG{k+kd}{public} \PYG{k+kd}{class} \PYG{n+nc}{MetodosAuxiliares} \PYG{o}{\PYGZob{}}
+
+	\PYG{k+kd}{public} \PYG{k+kd}{static} \PYG{n}{List}\PYG{o}{\PYGZlt{}}\PYG{n}{Jugador}\PYG{o}{\PYGZgt{}} \PYG{n+nf}{getJugadoresDesdeArchivo}\PYG{o}{(}\PYG{n}{String} \PYG{n}{path}\PYG{o}{)\PYGZob{}}
+		\PYG{n}{List}\PYG{o}{\PYGZlt{}}\PYG{n}{Jugador}\PYG{o}{\PYGZgt{}} \PYG{n}{res} \PYG{o}{=} \PYG{k}{new} \PYG{n}{ArrayList}\PYG{o}{\PYGZlt{}\PYGZgt{}();}
+
+		\PYG{k}{try} \PYG{o}{\PYGZob{}}
+			\PYG{n}{File} \PYG{n}{archivo} \PYG{o}{=} \PYG{k}{new} \PYG{n}{File}\PYG{o}{(}\PYG{n}{path}\PYG{o}{);}
+			\PYG{n}{FileReader} \PYG{n}{fr} \PYG{o}{=} \PYG{k}{new} \PYG{n}{FileReader}\PYG{o}{(}\PYG{n}{archivo}\PYG{o}{);}
+			\PYG{n}{BufferedReader} \PYG{n}{br} \PYG{o}{=} \PYG{k}{new} \PYG{n}{BufferedReader}\PYG{o}{(}\PYG{n}{fr}\PYG{o}{);}
+
+			\PYG{c+c1}{// Lectura del fichero}
+	        \PYG{n}{String} \PYG{n}{linea}\PYG{o}{;}
+	        \PYG{n}{String}\PYG{o}{[]} \PYG{n}{div} \PYG{o}{=} \PYG{k+kc}{null}\PYG{o}{;}
+			\PYG{k}{while}\PYG{o}{((}\PYG{n}{linea}\PYG{o}{=}\PYG{n}{br}\PYG{o}{.}\PYG{n+na}{readLine}\PYG{o}{())!=}\PYG{k+kc}{null}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+	        	\PYG{n}{div} \PYG{o}{=} \PYG{n}{linea}\PYG{o}{.}\PYG{n+na}{split}\PYG{o}{(}\PYG{l+s}{\PYGZdq{},\PYGZdq{}}\PYG{o}{);}
+				\PYG{n}{res}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{k}{new} \PYG{n}{Jugador}\PYG{o}{(}\PYG{k}{new} \PYG{n}{Integer}\PYG{o}{(}\PYG{n}{div}\PYG{o}{[}\PYG{l+m+mi}{0}\PYG{o}{]),} \PYG{n}{div}\PYG{o}{[}\PYG{l+m+mi}{1}\PYG{o}{],}\PYG{n}{div}\PYG{o}{[}\PYG{l+m+mi}{2}\PYG{o}{],}\PYG{n}{div}\PYG{o}{[}\PYG{l+m+mi}{3}\PYG{o}{],}\PYG{k}{new} \PYG{n}{Integer}\PYG{o}{(}\PYG{n}{div}\PYG{o}{[}\PYG{l+m+mi}{4}\PYG{o}{]),}\PYG{n}{div}\PYG{o}{[}\PYG{l+m+mi}{5}\PYG{o}{],}\PYG{k}{new} \PYG{n}{Integer}\PYG{o}{(}\PYG{n}{div}\PYG{o}{[}\PYG{l+m+mi}{6}\PYG{o}{]),}\PYG{k}{new} \PYG{n}{Integer}\PYG{o}{(}\PYG{n}{div}\PYG{o}{[}\PYG{l+m+mi}{7}\PYG{o}{]),}\PYG{k}{new} \PYG{n}{Integer}\PYG{o}{(}\PYG{n}{div}\PYG{o}{[}\PYG{l+m+mi}{8}\PYG{o}{])));}
+			\PYG{o}{\PYGZcb{}}
+			\PYG{n}{fr}\PYG{o}{.}\PYG{n+na}{close}\PYG{o}{();}
+
+		\PYG{o}{\PYGZcb{}} \PYG{k}{catch} \PYG{o}{(}\PYG{n}{Exception} \PYG{n}{e}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+			\PYG{n}{System}\PYG{o}{.}\PYG{n+na}{err}\PYG{o}{.}\PYG{n+na}{println}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}Se ha procucido un error al abrir el archivo especificado en el path. \PYGZdq{}}\PYG{o}{+}\PYG{n}{e}\PYG{o}{.}\PYG{n+na}{getMessage}\PYG{o}{());}
+		\PYG{o}{\PYGZcb{}}
+
+		\PYG{k}{return} \PYG{n}{res}\PYG{o}{;}
+	\PYG{o}{\PYGZcb{}}
+\PYG{o}{\PYGZcb{}}
+\end{Verbatim}

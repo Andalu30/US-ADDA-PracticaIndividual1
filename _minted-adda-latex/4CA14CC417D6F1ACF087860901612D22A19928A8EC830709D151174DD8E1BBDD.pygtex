@@ -1,0 +1,134 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{ * @author Juan Arteaga Carmona (juan.arteaga41567@gmail.com) \PYGZhy{} US: juaartcar}
+\PYG{c+cm}{ */}
+
+\PYG{k+kn}{package} \PYG{n+nn}{andalu30.PracticaIndividual1}\PYG{o}{;}
+
+\PYG{k+kn}{import} \PYG{n+nn}{java.util.List}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{us.lsi.ag.ValuesInRangeChromosome}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{us.lsi.ag.ValuesInRangeProblemAG}\PYG{o}{;}
+
+\PYG{k+kd}{public} \PYG{k+kd}{class} \PYG{n+nc}{ProblemaBaloncestoAG} \PYG{k+kd}{implements} \PYG{n}{ValuesInRangeProblemAG}\PYG{o}{\PYGZlt{}}\PYG{n}{Integer}\PYG{o}{,} \PYG{n}{List}\PYG{o}{\PYGZlt{}}\PYG{n}{Integer}\PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{o}{\PYGZob{}}
+	\PYG{k+kd}{private} \PYG{n}{List}\PYG{o}{\PYGZlt{}}\PYG{n}{Jugador}\PYG{o}{\PYGZgt{}} \PYG{n}{jugadores}\PYG{o}{;}
+	\PYG{k+kd}{private} \PYG{n}{Integer}  \PYG{n}{presupuesto} \PYG{o}{=} \PYG{l+m+mi}{10}\PYG{o}{;}
+	\PYG{k+kd}{private} \PYG{n}{Integer} \PYG{n}{seleccionarJugadores} \PYG{o}{=} \PYG{l+m+mi}{7}\PYG{o}{;}
+	
+	\PYG{k+kd}{public} \PYG{k+kd}{static} \PYG{n}{ProblemaBaloncestoAG} \PYG{n+nf}{create}\PYG{o}{(}\PYG{n}{String} \PYG{n}{fichero}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+		\PYG{k}{return} \PYG{k}{new} \PYG{n}{ProblemaBaloncestoAG}\PYG{o}{(}\PYG{n}{fichero}\PYG{o}{);}
+	\PYG{o}{\PYGZcb{}}
+	
+	\PYG{k+kd}{private} \PYG{n+nf}{ProblemaBaloncestoAG}\PYG{o}{(}\PYG{n}{String} \PYG{n}{fichero}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+		\PYG{k}{this}\PYG{o}{.}\PYG{n+na}{jugadores} \PYG{o}{=} \PYG{n}{MetodosAuxiliares}\PYG{o}{.}\PYG{n+na}{getJugadoresDesdeArchivo}\PYG{o}{(}\PYG{n}{fichero}\PYG{o}{);}
+	\PYG{o}{\PYGZcb{}}
+	
+
+	\PYG{n+nd}{@Override}
+	\PYG{k+kd}{public} \PYG{n}{Integer} \PYG{n+nf}{getVariableNumber}\PYG{o}{()} \PYG{o}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{size}\PYG{o}{();}
+	\PYG{o}{\PYGZcb{}}
+	
+	
+	\PYG{c+c1}{//Al ser binario no deberia de hacer falta, pero me obliga a usarlo...}
+	\PYG{n+nd}{@Override}
+	\PYG{k+kd}{public} \PYG{n}{Integer} \PYG{n+nf}{getMax}\PYG{o}{(}\PYG{n}{Integer} \PYG{n}{i}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+		\PYG{k}{return} \PYG{l+m+mi}{1}\PYG{o}{;}
+	\PYG{o}{\PYGZcb{}}
+
+	\PYG{n+nd}{@Override}
+	\PYG{k+kd}{public} \PYG{n}{Integer} \PYG{n+nf}{getMin}\PYG{o}{(}\PYG{n}{Integer} \PYG{n}{i}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+		\PYG{k}{return} \PYG{l+m+mi}{0}\PYG{o}{;}
+	\PYG{o}{\PYGZcb{}}
+
+	\PYG{n+nd}{@Override}
+	\PYG{k+kd}{public} \PYG{n}{Double} \PYG{n+nf}{fitnessFunction}\PYG{o}{(}\PYG{n}{ValuesInRangeChromosome}\PYG{o}{\PYGZlt{}}\PYG{n}{Integer}\PYG{o}{\PYGZgt{}} \PYG{n}{cr}\PYG{o}{)} \PYG{o}{\PYGZob{}} 
+		\PYG{n}{Double} \PYG{n}{v} \PYG{o}{=} \PYG{l+m+mf}{0.}\PYG{o}{;}
+		\PYG{n}{Double} \PYG{n}{k} \PYG{o}{=} \PYG{l+m+mf}{10.}\PYG{o}{*}\PYG{k}{this}\PYG{o}{.}\PYG{n+na}{jugadores}\PYG{o}{.}\PYG{n+na}{size}\PYG{o}{();}
+		
+		
+		\PYG{c+c1}{//V}
+		\PYG{k}{for} \PYG{o}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{o}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{cr}\PYG{o}{.}\PYG{n+na}{decode}\PYG{o}{().}\PYG{n+na}{size}\PYG{o}{();} \PYG{n}{i}\PYG{o}{++)} \PYG{o}{\PYGZob{}}
+			\PYG{k}{if} \PYG{o}{(}\PYG{n}{cr}\PYG{o}{.}\PYG{n+na}{decode}\PYG{o}{().}\PYG{n+na}{get}\PYG{o}{(}\PYG{n}{i}\PYG{o}{)==}\PYG{l+m+mi}{1}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+				\PYG{n}{v} \PYG{o}{+=} \PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{get}\PYG{o}{(}\PYG{n}{i}\PYG{o}{).}\PYG{n+na}{getValorCortos}\PYG{o}{()+}\PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{get}\PYG{o}{(}\PYG{n}{i}\PYG{o}{).}\PYG{n+na}{getValorLargos}\PYG{o}{();}
+			\PYG{o}{\PYGZcb{}}
+		\PYG{o}{\PYGZcb{}}
+		
+		
+		\PYG{c+c1}{//Numero de jugadores!}
+		\PYG{k+kt}{int} \PYG{n}{contAux} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{o}{;}
+		\PYG{k}{for} \PYG{o}{(}\PYG{n}{Integer} \PYG{n}{i} \PYG{o}{:} \PYG{n}{cr}\PYG{o}{.}\PYG{n+na}{decode}\PYG{o}{())\PYGZob{}}
+			\PYG{k}{if} \PYG{o}{(}\PYG{n}{i}\PYG{o}{==}\PYG{l+m+mi}{1}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+				\PYG{n}{contAux}\PYG{o}{++;}
+			\PYG{o}{\PYGZcb{}}
+		\PYG{o}{\PYGZcb{}}
+		\PYG{k}{if} \PYG{o}{(}\PYG{n}{contAux}\PYG{o}{!=}\PYG{n}{seleccionarJugadores}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+			\PYG{n}{v}\PYG{o}{=\PYGZhy{}}\PYG{n}{k}\PYG{o}{;}
+		\PYG{o}{\PYGZcb{}}
+		
+		\PYG{c+c1}{//Presupuesto}
+		\PYG{n}{Double} \PYG{n}{r1} \PYG{o}{=} \PYG{l+m+mf}{0.}\PYG{o}{;}
+		\PYG{k}{for} \PYG{o}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{o}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{cr}\PYG{o}{.}\PYG{n+na}{decode}\PYG{o}{().}\PYG{n+na}{size}\PYG{o}{();} \PYG{n}{i}\PYG{o}{++)} \PYG{o}{\PYGZob{}}
+			\PYG{k}{if} \PYG{o}{(}\PYG{n}{cr}\PYG{o}{.}\PYG{n+na}{decode}\PYG{o}{().}\PYG{n+na}{get}\PYG{o}{(}\PYG{n}{i}\PYG{o}{)==}\PYG{l+m+mi}{1}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+				\PYG{n}{r1} \PYG{o}{+=} \PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{get}\PYG{o}{(}\PYG{n}{i}\PYG{o}{).}\PYG{n+na}{getCache}\PYG{o}{();}
+			\PYG{o}{\PYGZcb{}}
+		\PYG{o}{\PYGZcb{}}
+		\PYG{k}{if} \PYG{o}{(!(}\PYG{n}{r1} \PYG{o}{\PYGZgt{}} \PYG{n}{presupuesto}\PYG{o}{))} \PYG{o}{\PYGZob{}}
+			\PYG{n}{r1} \PYG{o}{=} \PYG{l+m+mf}{0.}\PYG{o}{;}
+		\PYG{o}{\PYGZcb{}}
+				
+		\PYG{c+c1}{//Solo un base}
+		\PYG{n}{Double} \PYG{n}{r2} \PYG{o}{=} \PYG{l+m+mf}{0.}\PYG{o}{;}
+		\PYG{k}{for} \PYG{o}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{o}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{cr}\PYG{o}{.}\PYG{n+na}{decode}\PYG{o}{().}\PYG{n+na}{size}\PYG{o}{();} \PYG{n}{i}\PYG{o}{++)} \PYG{o}{\PYGZob{}}
+			\PYG{k}{if} \PYG{o}{(}\PYG{n}{cr}\PYG{o}{.}\PYG{n+na}{decode}\PYG{o}{().}\PYG{n+na}{get}\PYG{o}{(}\PYG{n}{i}\PYG{o}{)==}\PYG{l+m+mi}{1} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{o}{(}\PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{get}\PYG{o}{(}\PYG{n}{i}\PYG{o}{).}\PYG{n+na}{getPos1}\PYG{o}{().}\PYG{n+na}{equals}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}Base\PYGZdq{}}\PYG{o}{)} \PYG{o}{||} \PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{get}\PYG{o}{(}\PYG{n}{i}\PYG{o}{).}\PYG{n+na}{getPos2}\PYG{o}{().}\PYG{n+na}{equals}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}Base\PYGZdq{}}\PYG{o}{)} \PYG{o}{))} \PYG{o}{\PYGZob{}}
+				\PYG{n}{r2}\PYG{o}{++;}
+			\PYG{o}{\PYGZcb{}}
+		\PYG{o}{\PYGZcb{}}
+		\PYG{k}{if} \PYG{o}{(}\PYG{n}{r2} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+			\PYG{n}{r2} \PYG{o}{=} \PYG{l+m+mf}{0.}\PYG{o}{;}
+		\PYG{o}{\PYGZcb{}}\PYG{k}{else} \PYG{o}{\PYGZob{}}
+			\PYG{o}{;}
+		\PYG{o}{\PYGZcb{}}
+		
+		\PYG{c+c1}{//Al menos dos pivots}
+		\PYG{n}{Double} \PYG{n}{r3} \PYG{o}{=} \PYG{l+m+mf}{0.}\PYG{o}{;}
+		\PYG{k}{for} \PYG{o}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{o}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{cr}\PYG{o}{.}\PYG{n+na}{decode}\PYG{o}{().}\PYG{n+na}{size}\PYG{o}{();} \PYG{n}{i}\PYG{o}{++)} \PYG{o}{\PYGZob{}}
+			\PYG{k}{if} \PYG{o}{(}\PYG{n}{cr}\PYG{o}{.}\PYG{n+na}{decode}\PYG{o}{().}\PYG{n+na}{get}\PYG{o}{(}\PYG{n}{i}\PYG{o}{)==}\PYG{l+m+mi}{1} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{o}{(}\PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{get}\PYG{o}{(}\PYG{n}{i}\PYG{o}{).}\PYG{n+na}{getPos1}\PYG{o}{().}\PYG{n+na}{equals}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}Pivot\PYGZdq{}}\PYG{o}{)} \PYG{o}{||} \PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{get}\PYG{o}{(}\PYG{n}{i}\PYG{o}{).}\PYG{n+na}{getPos2}\PYG{o}{().}\PYG{n+na}{equals}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}Pivot\PYGZdq{}}\PYG{o}{)} \PYG{o}{))} \PYG{o}{\PYGZob{}}
+				\PYG{n}{r3}\PYG{o}{++;}
+			\PYG{o}{\PYGZcb{}}
+		\PYG{o}{\PYGZcb{}}
+		\PYG{k}{if} \PYG{o}{(}\PYG{n}{r3} \PYG{o}{\PYGZgt{}=} \PYG{l+m+mi}{2}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+			\PYG{n}{r3} \PYG{o}{=} \PYG{l+m+mf}{0.}\PYG{o}{;}
+		\PYG{o}{\PYGZcb{}}\PYG{k}{else} \PYG{o}{\PYGZob{}}
+			\PYG{n}{r3} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{n}{r3}\PYG{o}{;}
+		\PYG{o}{\PYGZcb{}}
+		
+		\PYG{c+c1}{//Al menos tres aleros}
+		\PYG{n}{Double} \PYG{n}{r4} \PYG{o}{=} \PYG{l+m+mf}{0.}\PYG{o}{;}
+		\PYG{k}{for} \PYG{o}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{o}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{cr}\PYG{o}{.}\PYG{n+na}{decode}\PYG{o}{().}\PYG{n+na}{size}\PYG{o}{();} \PYG{n}{i}\PYG{o}{++)} \PYG{o}{\PYGZob{}}
+			\PYG{k}{if} \PYG{o}{(}\PYG{n}{cr}\PYG{o}{.}\PYG{n+na}{decode}\PYG{o}{().}\PYG{n+na}{get}\PYG{o}{(}\PYG{n}{i}\PYG{o}{)==}\PYG{l+m+mi}{1} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{o}{(}\PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{get}\PYG{o}{(}\PYG{n}{i}\PYG{o}{).}\PYG{n+na}{getPos1}\PYG{o}{().}\PYG{n+na}{equals}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}Alero\PYGZdq{}}\PYG{o}{)} \PYG{o}{||} \PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{get}\PYG{o}{(}\PYG{n}{i}\PYG{o}{).}\PYG{n+na}{getPos2}\PYG{o}{().}\PYG{n+na}{equals}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}Alero\PYGZdq{}}\PYG{o}{)} \PYG{o}{))} \PYG{o}{\PYGZob{}}
+				\PYG{n}{r4}\PYG{o}{++;}
+			\PYG{o}{\PYGZcb{}}
+		\PYG{o}{\PYGZcb{}}
+		\PYG{k}{if} \PYG{o}{(}\PYG{n}{r4} \PYG{o}{\PYGZgt{}=} \PYG{l+m+mi}{0}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+			\PYG{n}{r4} \PYG{o}{=} \PYG{l+m+mf}{0.}\PYG{o}{;}
+		\PYG{o}{\PYGZcb{}}\PYG{k}{else} \PYG{o}{\PYGZob{}}
+			\PYG{n}{r4} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{n}{r4}\PYG{o}{;}
+		\PYG{o}{\PYGZcb{}}
+		
+		\PYG{n}{Double} \PYG{n}{r} \PYG{o}{=} \PYG{n}{r1}\PYG{o}{+}\PYG{n}{r2}\PYG{o}{+}\PYG{n}{r3}\PYG{o}{+}\PYG{n}{r4}\PYG{o}{;}
+				
+		\PYG{n}{Double} \PYG{n}{fitness} \PYG{o}{=} \PYG{n}{v} \PYG{o}{\PYGZhy{}} \PYG{o}{(}\PYG{n}{r}\PYG{o}{*}\PYG{n}{k}\PYG{o}{);}
+		\PYG{c+c1}{//System.out.println(fitness);}
+		
+		\PYG{k}{return} \PYG{n}{fitness}\PYG{o}{;}
+	\PYG{o}{\PYGZcb{}}
+
+	\PYG{n+nd}{@Override}
+	\PYG{k+kd}{public} \PYG{n}{List}\PYG{o}{\PYGZlt{}}\PYG{n}{Integer}\PYG{o}{\PYGZgt{}} \PYG{n+nf}{getSolucion}\PYG{o}{(}\PYG{n}{ValuesInRangeChromosome}\PYG{o}{\PYGZlt{}}\PYG{n}{Integer}\PYG{o}{\PYGZgt{}} \PYG{n}{cr}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{cr}\PYG{o}{.}\PYG{n+na}{decode}\PYG{o}{();}
+	\PYG{o}{\PYGZcb{}}
+
+
+	
+\PYG{o}{\PYGZcb{}}
+\end{Verbatim}

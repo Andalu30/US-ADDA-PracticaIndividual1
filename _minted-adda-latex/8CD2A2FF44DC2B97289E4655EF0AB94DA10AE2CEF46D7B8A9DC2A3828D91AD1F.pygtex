@@ -1,0 +1,60 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{ * @author Juan Arteaga Carmona (juan.arteaga41567@gmail.com) \PYGZhy{} US: juaartcar}
+\PYG{c+cm}{ */}
+
+\PYG{k+kn}{package} \PYG{n+nn}{andalu30.PracticaIndividual1}\PYG{o}{;}
+
+\PYG{k+kn}{import} \PYG{n+nn}{java.util.ArrayList}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{java.util.List}\PYG{o}{;}
+
+\PYG{k+kn}{import} \PYG{n+nn}{us.lsi.ag.ValuesInRangeChromosome}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{us.lsi.ag.agchromosomes.AlgoritmoAG}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{us.lsi.ag.agchromosomes.ChromosomeFactory}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{us.lsi.ag.agchromosomes.ChromosomeFactory.ChromosomeType}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{us.lsi.ag.agstopping.StoppingConditionFactory}\PYG{o}{;}
+
+
+\PYG{k+kd}{public} \PYG{k+kd}{class} \PYG{n+nc}{TestAG} \PYG{o}{\PYGZob{}}
+
+
+	\PYG{k+kd}{public} \PYG{k+kd}{static} \PYG{k+kt}{void} \PYG{n+nf}{main}\PYG{o}{(}\PYG{n}{String}\PYG{o}{[]} \PYG{n}{args}\PYG{o}{)\PYGZob{}}
+		
+		\PYG{n}{System}\PYG{o}{.}\PYG{n+na}{out}\PYG{o}{.}\PYG{n+na}{println}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}Ejecutando el algoritmo genetico. Por favor, espere.\PYGZdq{}}\PYG{o}{);}
+
+		
+		\PYG{n}{AlgoritmoAG}\PYG{o}{.}\PYG{n+na}{POPULATION\PYGZus{}SIZE} \PYG{o}{=} \PYG{l+m+mi}{10000}\PYG{o}{;}
+		\PYG{n}{StoppingConditionFactory}\PYG{o}{.}\PYG{n+na}{NUM\PYGZus{}GENERATIONS} \PYG{o}{=} \PYG{l+m+mi}{500}\PYG{o}{;}
+		
+		\PYG{n}{AlgoritmoAG}\PYG{o}{.}\PYG{n+na}{ELITISM\PYGZus{}RATE}  \PYG{o}{=} \PYG{l+m+mf}{0.3}\PYG{o}{;}
+		\PYG{n}{AlgoritmoAG}\PYG{o}{.}\PYG{n+na}{CROSSOVER\PYGZus{}RATE} \PYG{o}{=} \PYG{l+m+mf}{0.8}\PYG{o}{;}
+		\PYG{n}{AlgoritmoAG}\PYG{o}{.}\PYG{n+na}{MUTATION\PYGZus{}RATE} \PYG{o}{=} \PYG{l+m+mf}{0.7}\PYG{o}{;}
+		\PYG{n}{StoppingConditionFactory}\PYG{o}{.}\PYG{n+na}{FITNESS\PYGZus{}MIN} \PYG{o}{=} \PYG{l+m+mf}{46.}\PYG{o}{;}
+		
+		
+		\PYG{n}{ProblemaBaloncestoAG} \PYG{n}{p} \PYG{o}{=} \PYG{n}{ProblemaBaloncestoAG}\PYG{o}{.}\PYG{n+na}{create}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}ficheros/suplentes.txt\PYGZdq{}}\PYG{o}{);}
+		
+		\PYG{n}{AlgoritmoAG}  \PYG{n}{ap} \PYG{o}{=} \PYG{k}{new} \PYG{n}{AlgoritmoAG}\PYG{o}{(}\PYG{n}{ChromosomeType}\PYG{o}{.}\PYG{n+na}{Binary}\PYG{o}{,} \PYG{n}{p}\PYG{o}{);}
+		
+		\PYG{n}{ap}\PYG{o}{.}\PYG{n+na}{ejecuta}\PYG{o}{();}
+		
+		\PYG{n}{System}\PYG{o}{.}\PYG{n+na}{out}\PYG{o}{.}\PYG{n+na}{println}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}Algoritmo genetico ejecutado. Estas son las estadisticas:\PYGZdq{}}\PYG{o}{);}
+		
+		\PYG{n}{ValuesInRangeChromosome}\PYG{o}{\PYGZlt{}}\PYG{n}{Integer}\PYG{o}{\PYGZgt{}} \PYG{n}{cr} \PYG{o}{=} \PYG{n}{ChromosomeFactory}\PYG{o}{.}\PYG{n+na}{asValuesInRange}\PYG{o}{(}\PYG{n}{ap}\PYG{o}{.}\PYG{n+na}{getBestFinal}\PYG{o}{());}
+		\PYG{n}{System}\PYG{o}{.}\PYG{n+na}{out}\PYG{o}{.}\PYG{n+na}{println}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}Fitness del mejor cromosoma:      \PYGZdq{}}\PYG{o}{+} \PYG{n}{p}\PYG{o}{.}\PYG{n+na}{fitnessFunction}\PYG{o}{(}\PYG{n}{cr}\PYG{o}{));}
+		\PYG{n}{System}\PYG{o}{.}\PYG{n+na}{out}\PYG{o}{.}\PYG{n+na}{println}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}Solucion del algoritmo genetico: \PYGZdq{}}\PYG{o}{+}\PYG{n}{p}\PYG{o}{.}\PYG{n+na}{getSolucion}\PYG{o}{(}\PYG{n}{cr}\PYG{o}{));}
+		
+		\PYG{n}{List}\PYG{o}{\PYGZlt{}}\PYG{n}{Jugador}\PYG{o}{\PYGZgt{}} \PYG{n}{jugadores} \PYG{o}{=} \PYG{n}{MetodosAuxiliares}\PYG{o}{.}\PYG{n+na}{getJugadoresDesdeArchivo}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}ficheros/suplentes.txt\PYGZdq{}}\PYG{o}{);}
+		\PYG{n}{List}\PYG{o}{\PYGZlt{}}\PYG{n}{String}\PYG{o}{\PYGZgt{}} \PYG{n}{nombresSolucion} \PYG{o}{=} \PYG{k}{new} \PYG{n}{ArrayList}\PYG{o}{\PYGZlt{}\PYGZgt{}();}
+		
+		\PYG{k}{for} \PYG{o}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{o}{;} \PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{n}{cr}\PYG{o}{.}\PYG{n+na}{decode}\PYG{o}{().}\PYG{n+na}{size}\PYG{o}{();}\PYG{n}{i}\PYG{o}{++)} \PYG{o}{\PYGZob{}}
+			\PYG{k}{if} \PYG{o}{(}\PYG{n}{cr}\PYG{o}{.}\PYG{n+na}{decode}\PYG{o}{().}\PYG{n+na}{get}\PYG{o}{(}\PYG{n}{i}\PYG{o}{).}\PYG{n+na}{equals}\PYG{o}{(}\PYG{l+m+mi}{1}\PYG{o}{))} \PYG{o}{\PYGZob{}}
+				\PYG{n}{nombresSolucion}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{n}{jugadores}\PYG{o}{.}\PYG{n+na}{get}\PYG{o}{(}\PYG{n}{i}\PYG{o}{).}\PYG{n+na}{getNombre}\PYG{o}{());}
+			\PYG{o}{\PYGZcb{}}
+		\PYG{o}{\PYGZcb{}}
+		\PYG{n}{System}\PYG{o}{.}\PYG{n+na}{out}\PYG{o}{.}\PYG{n+na}{println}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}\PYGZbs{}nInterpretacion de la solucion:\PYGZbs{}nSe deben de seleccionar los siguientes jugadores: \PYGZdq{}}\PYG{o}{+}\PYG{n}{nombresSolucion}\PYG{o}{);}	
+		
+	\PYG{o}{\PYGZcb{}}
+
+\PYG{o}{\PYGZcb{}}
+\end{Verbatim}
