@@ -1,3 +1,7 @@
+/*
+ * @author Juan Arteaga Carmona (juan.arteaga41567@gmail.com) - US: juaartcar
+ */
+
 package andalu30.PracticaIndividual1;
 
 import java.io.PrintWriter;
@@ -102,9 +106,9 @@ public class ProblemaBaloncestoPLI {
 
 
 		//Impresiones por pantalla:
-		System.out.println("Se ha generado un archivo llamado \"ArchivoLPSolveGenerado.txt\" que contiene la definicion de la solucion del problema en formato LPSolve");
+		System.out.println("Se ha generado un archivo llamado \"ArchivoLPSolveGenerado.txt\" que contiene la definición de la solución del problema en formato LPSolve");
 		System.out.println("Este es el archivo con formato LPSolve:\n\n"+r);
-		System.out.println("\n\nUna vez ejecutado, esta es la solucion al problema (tambien se guardara en un archivo de texto):");
+		System.out.println("\n\nUna vez ejecutado, esta es la solución al problema (tambien se guardará en un archivo de texto):");
 		System.out.println(NombresSolucion);
 
 

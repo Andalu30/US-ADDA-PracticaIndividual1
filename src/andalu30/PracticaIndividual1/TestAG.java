@@ -1,3 +1,7 @@
+/*
+ * @author Juan Arteaga Carmona (juan.arteaga41567@gmail.com) - US: juaartcar
+ */
+
 package andalu30.PracticaIndividual1;
 
 import java.util.ArrayList;
@@ -17,13 +21,14 @@ public class TestAG {
 		
 		System.out.println("Ejecutando el algoritmo genetico. Por favor, espere.");
 
+		
+		AlgoritmoAG.POPULATION_SIZE = 10000;
+		StoppingConditionFactory.NUM_GENERATIONS = 500;
+		
 		AlgoritmoAG.ELITISM_RATE  = 0.3;
 		AlgoritmoAG.CROSSOVER_RATE = 0.8;
 		AlgoritmoAG.MUTATION_RATE = 0.7;
-		AlgoritmoAG.POPULATION_SIZE = 1000;
-		
-		StoppingConditionFactory.NUM_GENERATIONS = 500;
-		StoppingConditionFactory.FITNESS_MIN = 50.;
+		StoppingConditionFactory.FITNESS_MIN = 46.;
 		
 		
 		ProblemaBaloncestoAG p = ProblemaBaloncestoAG.create("ficheros/suplentes.txt");
@@ -46,8 +51,8 @@ public class TestAG {
 				nombresSolucion.add(jugadores.get(i).getNombre());
 			}
 		}
-		System.out.println("\nInterpretacion de la solucion:\nSe deben de seleccionar los siguientes jugadores: "+nombresSolucion);
+		System.out.println("\nInterpretacion de la solucion:\nSe deben de seleccionar los siguientes jugadores: "+nombresSolucion);	
 		
-	}	
+	}
 
 }

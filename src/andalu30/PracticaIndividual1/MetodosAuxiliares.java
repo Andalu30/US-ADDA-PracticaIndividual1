@@ -1,3 +1,7 @@
+/*
+ * @author Juan Arteaga Carmona (juan.arteaga41567@gmail.com) - US: juaartcar
+ */
+
 package andalu30.PracticaIndividual1;
 
 import java.io.BufferedReader;

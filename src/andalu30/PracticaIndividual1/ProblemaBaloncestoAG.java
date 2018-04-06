@@ -1,3 +1,7 @@
+/*
+ * @author Juan Arteaga Carmona (juan.arteaga41567@gmail.com) - US: juaartcar
+ */
+
 package andalu30.PracticaIndividual1;
 
 import java.util.List;
@@ -38,9 +42,18 @@ public class ProblemaBaloncestoAG implements ValuesInRangeProblemAG<Integer, Lis
 	@Override
 	public Double fitnessFunction(ValuesInRangeChromosome<Integer> cr) { 
 		Double v = 0.;
-		Double k = 200.;
+		Double k = 10.*this.jugadores.size();
 		
-		//Numero de jugadores
+		
+		//V
+		for (int i = 0; i < cr.decode().size(); i++) {
+			if (cr.decode().get(i)==1) {
+				v += jugadores.get(i).getValorCortos()+jugadores.get(i).getValorLargos();
+			}
+		}
+		
+		
+		//Numero de jugadores!
 		int contAux = 0;
 		for (Integer i : cr.decode()){
 			if (i==1) {
@@ -48,14 +61,7 @@ public class ProblemaBaloncestoAG implements ValuesInRangeProblemAG<Integer, Lis
 			}
 		}
 		if (contAux!=seleccionarJugadores) {
-			v=-1000000.;
-		}
-		
-		//V
-		for (int i = 0; i < cr.decode().size(); i++) {
-			if (cr.decode().get(i)==1) {
-				v += jugadores.get(i).getValorCortos()+jugadores.get(i).getValorLargos();
-			}
+			v=-k;
 		}
 		
 		//Presupuesto
